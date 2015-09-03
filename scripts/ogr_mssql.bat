@@ -42,19 +42,19 @@ REM =====================================================
 
 REM Upload af data til MS SQL Server
 REM =====================================================
-ogr2ogr -gt 100000 -overwrite -lco FID="%ogr_fid%" -lco GEOM_NAME="%ogr_geom%" -lco OVERWRITE=YES -lco SCHEMA="%xp4%" -nln "%xp5%" -a_srs "EPSG:%ogr_epsg%" -f "MSSQLSpatial" %xp3% %xp1% %xp2%
+ogr2ogr -gt 100000 -overwrite -lco FID="%ogr_fid%" -lco GEOM_NAME="%ogr_geom%" -lco OVERWRITE=YES -lco SCHEMA="%xp4%" -nln "%xp5%" -a_srs "EPSG:%ogr_epsg%" -f "MSSQLSpatial" MSSQL:%xp3% %xp1% %xp2%
 REM =====================================================
 
 REM Generer spatielt indeks. Dette trin kan fjernes ved overgang til GDAL ver. 2.n
 REM =====================================================
-ogrinfo -q -sql "CREATE SPATIAL INDEX  [SPX_%xp5%] ON [%xp4%].[%xp5%] ([%ogr_geom%]) USING GEOMETRY_GRID WITH (BOUNDING_BOX =(%ogr_bbox%))" %xp3%
+ogrinfo -q -sql "CREATE SPATIAL INDEX  [SPX_%xp5%] ON [%xp4%].[%xp5%] ([%ogr_geom%]) USING GEOMETRY_GRID WITH (BOUNDING_BOX =(%ogr_bbox%))" MSSQL:%xp3%
 REM =====================================================
 
 REM Erstat UTF8 repræsentation af æøå o.l. til Latin-1 repræsentation
 REM **Kræver** installation af stored procedure "ReplaceAccent" i schema dbo
 REM Dette trin kan fjernes ved overgang til GDAL ver. 2.n
 REM =====================================================
-ogrinfo -q -sql "EXEC dbo.ReplaceAccent @schemaname='%xp4%', @tablename='%xp5%'" %xp3%
+ogrinfo -q -sql "EXEC dbo.ReplaceAccent @schemaname='%xp4%', @tablename='%xp5%'" MSSQL:%xp3%
 REM =====================================================
 
 goto slut

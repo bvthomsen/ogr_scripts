@@ -18,7 +18,7 @@ REM Upload af data fra Miljøportalen (WFS)
 REM ============================================================================================
 
 set "ogr_inp=http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetFeature&bbox=678577,6178960,702291,6202870"
-set "db_conn=MSSQL:server=f-gis03;database=gis_test;trusted_connection=yes"
+set "db_conn=server=f-gis03;database=gis_test;trusted_connection=yes"
 
 call %~dp0ogr_mssql.bat "%ogr_inp%" "dmp:ARTSFUND_FL" "%db_conn%" flubber artsfund_fl
 call %~dp0ogr_mssql.bat "%ogr_inp%" "dmp:ARTSFUND_LN" "%db_conn%" flubber artsfund_ln
