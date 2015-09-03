@@ -47,7 +47,7 @@ REM =====================================================
 
 REM Upload af data til Postgres Server
 REM =====================================================
-ogr2ogr --config PG_USE_COPY YES -gt 100000 -overwrite -lco FID="%ogr_fid%" -lco GEOMETRY_NAME="%ogr_geom%" -lco OVERWRITE=YES -nln "%xp4%.%xp5%" -a_srs "EPSG:%ogr_epsg%" -f "PostgreSQL" PG:%xp3% %xp1% %xp2%
+ogr2ogr -progress --config PG_USE_COPY YES -gt 100000 -overwrite -lco FID="%ogr_fid%" -lco GEOMETRY_NAME="%ogr_geom%" -lco OVERWRITE=YES -nln "%xp4%.%xp5%" -a_srs "EPSG:%ogr_epsg%" -f "PostgreSQL" PG:%xp3% %xp1% %xp2%
 REM =====================================================
 
 goto slut
