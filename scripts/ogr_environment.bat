@@ -7,7 +7,8 @@ REM ============================================================================
 
 REM Hovedmappe for OSGEO4W (OGR, GDAL og Python)
 REM =====================================================
-set OSGEO4W_ROOT=C:\OSGeo4w64
+REM set OSGEO4W_ROOT=C:\OSGeo4w64
+set OSGEO4W_ROOT=C:\OSGeo4w
 REM =====================================================
 
 REM ============== Nix Pille ============================
