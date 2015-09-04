@@ -32,7 +32,7 @@ REM =====================================================
 set ogr_fid=fid
 REM =====================================================
 
-REM Navn på administartivt dato felt (hvis det er lig med .ingenting.
+REM Navn på administartivt datetime felt (hvis det er lig med .ingenting.
 REM oprettes og populeres feltet ikke
 REM =====================================================
 set ogr_dato=hent_dato
@@ -42,7 +42,6 @@ REM EPSG værdi for projektion (normalt 25832 aka. UTM32/ETRS89
 REM =====================================================
 set ogr_epsg=25832
 REM =====================================================
-
 
 REM Område definition minx..maxy til generering af spatielt indeks
 REM angives med koordinatsæt i ogr_epsg defineret projektion
