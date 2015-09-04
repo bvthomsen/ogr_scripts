@@ -55,6 +55,14 @@ REM =====================================================
 ogrinfo -q -sql "CREATE INDEX ON %xp4%.%xp5% USING GIST (%ogr_geom%);" PG:%xp3%
 REM =====================================================
 
+REM Hvis var ogr_dato er sat, autogenereres der et nyt felt, som indeholder dato for indlægning af data 
+REM =====================================================
+if not #%ogr_dato%==# (
+  ogrinfo -q -sql "ALTER TABLE %xp4%.%xp5% ADD %ogr_dato% varchar(10) NULL DEFAULT current_date::character varying" PG:%xp3%
+  ogrinfo -q -sql "UPDATE %xp4%.%xp5%  SET %ogr_dato%=current_date::character varying" PG:%xp3%
+)
+REM =====================================================
+
 goto slut
 
 :fejl
