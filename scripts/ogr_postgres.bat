@@ -47,7 +47,12 @@ REM =====================================================
 
 REM Upload af data til Postgres Server
 REM =====================================================
-ogr2ogr -progress --config PG_USE_COPY YES -gt 100000 -overwrite -lco FID="%ogr_fid%" -lco GEOMETRY_NAME="%ogr_geom%" -lco OVERWRITE=YES -nln "%xp4%.%xp5%" -a_srs "EPSG:%ogr_epsg%" -f "PostgreSQL" PG:%xp3% %xp1% %xp2%
+ogr2ogr -progress --config PG_USE_COPY YES -gt 100000 -overwrite -lco SPATIAL_INDEX=FALSE -lco FID="%ogr_fid%" -lco GEOMETRY_NAME="%ogr_geom%" -lco OVERWRITE=YES -nln "%xp4%.%xp5%" -a_srs "EPSG:%ogr_epsg%" -f "PostgreSQL" PG:%xp3% %xp1% %xp2%
+REM =====================================================
+
+REM Opretter spatiel index efter generering af tabel
+REM =====================================================
+ogrinfo -q -sql "CREATE INDEX ON %xp4%.%xp5% USING GIST (%ogr_geom%);" PG:%xp3%
 REM =====================================================
 
 goto slut

@@ -17,6 +17,9 @@ REM ============================================================================
 REM Upload af data fra Miljøportalen (WFS)
 REM ============================================================================================
 
+REM ændring af client encoding fra LATIN1 (standard, sat i ogr_environmet.bat) til UTF8
+set PGCLIENTENCODING=UTF8
+
 set "ogr_inp=http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetFeature&bbox=678577,6178960,702291,6202870"
 set "db_conn=host='f-gis03' dbname='gis_test' user='postgres' password='ukulemy' port='5432'"
 
