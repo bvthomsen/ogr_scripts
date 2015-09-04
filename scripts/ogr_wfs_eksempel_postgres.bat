@@ -14,10 +14,10 @@ REM ============================================================================
 call %~dp0ogr_environment.bat
 REM ============================================================================================
 
-REM Upload af data fra Miljøportalen (WFS)
+REM Upload af DAI data fra Miljøportalen (WFS)
 REM ============================================================================================
 
-REM ændring af client encoding fra LATIN1 (standard, sat i ogr_environmet.bat) til UTF8
+REM ændring af client encoding fra LATIN1 (standard - værdisat i ogr_environmet.bat) til UTF8
 set PGCLIENTENCODING=UTF8
 
 set "ogr_inp=http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetFeature&bbox=678577,6178960,702291,6202870"
@@ -80,7 +80,7 @@ call %~dp0ogr_postgres.bat "%ogr_inp%" "dmp:AA_BES_LINJER" "%db_conn%" flubber A
 REM ============================================================================================
 
 
-REM Upload af data fra Miljøportalen (WFS)
+REM Upload af spildevands data fra Miljøportalen (WFS)
 REM ============================================================================================
 
 set "ogr_inp=http://arealinformation.miljoeportal.dk/gis/services/puls/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetFeature&bbox=678577,6178960,702291,6202870"
