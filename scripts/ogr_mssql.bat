@@ -30,9 +30,12 @@ if #%~5==#* (set xp5=%xp2%) else (set xp5=%~5)
 REM Tabelnavn renses for tumpetegn (Tilføjes efter behov)
 set set xp5=%xp5: =_%
 set set xp5=%xp5::=_%
+
+REM Der genereres en evt. ""where"" clause
+if not #%ogr_where%==# (set xp6=-where "%~ogr_where%") else (set xp6=) 
 REM =====================================================
 
-REM Sanity check om globale variable er sat (bitter erfaring)
+REM Sanity check om øvrige globale variable er sat (bitter erfaring)
 REM =====================================================
 if #%ogr_geom%==# set ogr_geom=geom
 if #%ogr_fid%==# set ogr_fid=fid
@@ -42,7 +45,7 @@ REM =====================================================
 
 REM Upload af data til MS SQL Server
 REM =====================================================
-ogr2ogr -progress -gt 100000 -overwrite -lco FID="%ogr_fid%" -lco GEOM_NAME="%ogr_geom%" -lco OVERWRITE=YES -lco SCHEMA="%xp4%" -nln "%xp5%" -a_srs "EPSG:%ogr_epsg%" -f "MSSQLSpatial" MSSQL:%xp3% %xp1% %xp2%
+ogr2ogr -progress -gt 100000 -overwrite -lco FID="%ogr_fid%" -lco GEOM_NAME="%ogr_geom%" -lco OVERWRITE=YES -lco SCHEMA="%xp4%" -nln "%xp5%" -a_srs "EPSG:%ogr_epsg%"  %xp6% -f "MSSQLSpatial" MSSQL:%xp3% %xp1% %xp2%
 REM =====================================================
 
 REM Generer spatielt indeks. Dette trin kan fjernes ved overgang til GDAL ver. 2.n
