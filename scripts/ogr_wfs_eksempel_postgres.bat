@@ -90,3 +90,173 @@ call %~dp0ogr_postgres.bat "%ogr_inp%" "dmp:REGNBET_UDLEDNING_MAAL" "%db_conn%" 
 call %~dp0ogr_postgres.bat "%ogr_inp%" "dmp:RENSEANLAEG" "%db_conn%" flubber RENSEANLAEG
 call %~dp0ogr_postgres.bat "%ogr_inp%" "dmp:RENSEANLAEG_MAAL" "%db_conn%" flubber RENSEANLAEG_MAAL
 REM ============================================================================================
+
+REM ændring af client encoding fra LATIN1 (standard - værdisat i ogr_environmet.bat) til UTF8
+set PGCLIENTENCODING=UTF8
+
+REM Upload af SUT data fra Kortforsyningen (WFS)
+REM ============================================================================================
+
+set "ogr_inp=http://kortforsyningen.kms.dk/service?servicename=SutWFS_UTM&client=MapInfo&request=GetCapabilities&service=WFS&login=qgisdk&password=qgisdk&bbox=678577,6178960,702291,6202870"
+set "db_conn=host='f-gis03' dbname='gis_test' user='postgres' password='ukulemy' port='5432'"
+
+call %~dp0ogr_postgres.bat "%ogr_inp%" "Vej" "%db_conn%" sut vej
+call %~dp0ogr_postgres.bat "%ogr_inp%" "Skel" "%db_conn%" sut skel
+call %~dp0ogr_postgres.bat "%ogr_inp%" "Skelpunkt" "%db_conn%" sut service
+
+
+REM Upload af data fra GEUS (WFS)
+REM ============================================================================================
+
+set "ogr_inp=http://data.geus.dk/geusmap/ows/25832.jsp?service=WFS&version=1.0.0&request=GetCapabilities&bbox=678577,6178960,702291,6202870&whoami=gis@frederikssund.dk"
+
+call %~dp0ogr_postgres.bat "%ogr_inp%" "jupiter_boringer_ws" "%db_conn%" geus jupiter_boringer_ws
+call %~dp0ogr_postgres.bat "%ogr_inp%" "jupiter_bor_vandfors_almen_ws" "%db_conn%" geus jupiter_bor_vandfors_almen_ws
+call %~dp0ogr_postgres.bat "%ogr_inp%" "jupiter_bor_vandfors_andre_ws" "%db_conn%" geus jupiter_bor_vandfors_andre_ws
+call %~dp0ogr_postgres.bat "%ogr_inp%" "jupiter_anlaeg_ws" "%db_conn%" geus jupiter_anlaeg_ws
+
+
+REM Upload af data fra FBB (WFS)
+REM ============================================================================================
+
+set "ogr_inp=http://www.kulturarv.dk/geoserver/wfs?service=wfs&version=1.0.0&request=GetCapabilities&bbox=678577,6178960,702291,6202870"
+
+call %~dp0ogr_postgres.bat "%ogr_inp%" "fbb:view_bygning_fredede" "%db_conn%" fbb fredede_bygninger
+call %~dp0ogr_postgres.bat "%ogr_inp%" "fbb:view_bygning_fredningstatus_hoej" "%db_conn%" fbb bygning_fredningstatus_hoej
+
+REM Upload af data fra Fund og fortidsminder ffm (WFS)
+REM ============================================================================================
+
+set "ogr_inp=http://www.kulturarv.dk/ffpublic/wfs?service=wfs&version=1.0.0&request=GetCapabilities&bbox=678100,6178750,704250,6203480"
+
+call %~dp0ogr_postgres.bat "%ogr_inp%" "public:fundogfortidsminder_punkt_ikkefredet" "%db_conn%" fbb fundogfortidsminder_punkt_ikkefredet
+call %~dp0ogr_postgres.bat "%ogr_inp%" "public:fundogfortid_punkt_fredet" "%db_conn%" ffm fundogfortid_punkt_fredet
+call %~dp0ogr_postgres.bat "%ogr_inp%" "public:fundogfortid_linie_alle" "%db_conn%" ffm fundogfortid_linie_alle
+call %~dp0ogr_postgres.bat "%ogr_inp%" "public:fundogfortid_areal_ka" "%db_conn%" ffm fundogfortid_areal_ka
+call %~dp0ogr_postgres.bat "%ogr_inp%" "public:fundogfortid_areal_beskyttelse" "%db_conn%" ffm fundogfortid_areal_beskyttelse
+call %~dp0ogr_postgres.bat "%ogr_inp%" "public:fundogfortid_areal_alle" "%db_conn%" ffm fundogfortid_areal_alle
+call %~dp0ogr_postgres.bat "%ogr_inp%" "public:fundogfortid_areal_adm" "%db_conn%" ffm fundogfortid_areal_adm
+
+REM Upload af data fra Plansystem.dk plan pdk (WFS)
+REM ============================================================================================
+
+set "ogr_inp=WFS:http://geoservice.plansystem.dk/wfs?version=1.0.0&"
+set ogr_where="komnr=250"
+
+call %~dp0ogr_postgres.bat "%ogr_inp%" "pdk:theme_pdk_lokalplan_vedtaget_v" "%db_conn%" pdk pdk_lokalplan_vedtaget
+call %~dp0ogr_postgres.bat "%ogr_inp%" "pdk:theme_pdk_temalokalplan_vedtaget_v" "%db_conn%" pdk pdk_temalokalplan_vedtaget
+call %~dp0ogr_postgres.bat "%ogr_inp%" "pdk:theme_pdk_temalokalplan_forslag_v" "%db_conn%" pdk_temalokalplan_forslag
+call %~dp0ogr_postgres.bat "%ogr_inp%" "pdk:theme_pdk_kommuneplanramme_vedtaget_v" "%db_conn%" pdk pdk_kommuneplanramme_vedtaget
+call %~dp0ogr_postgres.bat "%ogr_inp%" "pdk:theme_pdk_kommuneplanramme_forslag_v" "%db_conn%" pdk pdk_kommuneplanramme_forslag
+call %~dp0ogr_postgres.bat "%ogr_inp%" "pdk:theme_pdk_kommuneplantillaeg_vedtaget_v" "%db_conn%" pdk pdk_kommuneplantillaeg_vedtaget
+call %~dp0ogr_postgres.bat "%ogr_inp%" "pdk:theme_pdk_kommuneplantillaeg_forslag_v" "%db_conn%" pdk pdk_kommuneplantillaeg_forslag
+call %~dp0ogr_postgres.bat "%ogr_inp%" "pdk:theme_pdk_byzonesommerhusomraade_vedtaget_v" "%db_conn%" pdk pdk_byzonesommerhusomraade_vedtaget
+call %~dp0ogr_postgres.bat "%ogr_inp%" "pdk:theme_pdk_byzonesommerhusomraade_forslag_v" "%db_conn%" pdk pdk_byzonesommerhusomraade_forslag
+call %~dp0ogr_postgres.bat "%ogr_inp%" "pdk:theme_pdk_zonekort_v" "%db_conn%" pdk pdk:theme_pdk_zonekort_v
+
+REM henter WFS for tilslutningspligtomraade_vedtaget
+REM SET tabel=pdk_tilslutningspligtomraade_vedtaget
+REM SET typename=pdk:theme_pdk_tilslutningspligtomraade_vedtaget_v
+REM CALL :Indlaes
+
+REM henter WFS for forsyningomraade_vedtaget
+REM SET tabel=pdk_forsyningomraade_vedtaget
+REM SET typename=pdk:theme_pdk_forsyningomraade_vedtaget_v
+REM CALL :Indlaes
+
+REM Spildevandsplan - endnu ikke på plansystemet
+REM pdk:theme_pdk_kloakopland_vedtaget_v
+REM pdk:theme_pdk_kloakopland_forslag_v
+REM CALL :Indlaes
+
+REM pdk:theme_pdk_forsyningsforbudomraade_vedtaget_v
+REM pdk:theme_pdk_forsyningsforbudomraade_forslag_v
+REM CALL :Indlaes
+
+set ogr_where=
+
+rem *** REM --------------------------------------------------------------------------------------------------------------------------------------
+rem *** REM øvrig liste med databaser fra os2geo
+rem *** REM --------------------------------------------------------------------------------------------------------------------------------------
+rem *** 
+rem *** SET tabel=rfs_badevand
+rem *** SET login=anoer%%40frederikssund.dk:Slangerup3550
+rem *** SET url=geo.os2geo.dk/api/export/db-0cf16ed01ec89bd988508ebba0261cda
+rem *** CALL :Indlaes
+rem *** 
+rem *** SET tabel=rfs_informationer_badevand
+rem *** SET login=anoer%%40frederikssund.dk:Slangerup3550
+rem *** SET url=geo.os2geo.dk/api/export/db-5577a0a6d7b13f71eb4cebd47fc57374
+rem *** CALL :Indlaes
+rem *** 
+rem *** REM --------------------------------------------------------------------------------------------------------------------------------------
+rem *** REM RapportFraStedet emner fra os2geo
+rem *** REM --------------------------------------------------------------------------------------------------------------------------------------
+rem *** 
+rem *** SET tabel=rfs_afstribning
+rem *** SET login=anoer%%40frederikssund.dk:Slangerup3550
+rem *** SET url=geo.os2geo.dk/api/export/db-2009e194560bd594f7f1e381668e229a
+rem *** CALL :Indlaes
+rem *** 
+rem *** SET tabel=rfs_Skilte_afmaerkning
+rem *** SET login=anoer%%40frederikssund.dk:Slangerup3550
+rem *** SET url=geo.os2geo.dk/api/export/db-7329765f31b7939dc2b457f4830586e7
+rem *** CALL :Indlaes
+rem *** 
+rem *** SET tabel=rfs_kommunale_legepladser
+rem *** SET login=anoer%%40frederikssund.dk:Slangerup3550
+rem *** SET url=geo.os2geo.dk/api/export/db-9e9b674ee499b4ff06bfe3cbef1508c5
+rem *** REM CALL :Indlaes
+rem *** 
+rem *** SET tabel=rfs_vinter
+rem *** SET login=anoer%%40frederikssund.dk:Slangerup3550
+rem *** SET url=geo.os2geo.dk/api/export/db-9e9b674ee499b4ff06bfe3cbef28d5b6
+rem *** REM CALL :Indlaes
+rem *** 
+rem *** SET tabel=rfs_vejbelysning_trafiksignal
+rem *** SET login=anoer%%40frederikssund.dk:Slangerup3550
+rem *** SET url=geo.os2geo.dk/api/export/db-9e9b674ee499b4ff06bfe3cbef2df726
+rem *** CALL :Indlaes
+rem *** 
+rem *** SET tabel=rfs_midlertidige_gravninger
+rem *** SET login=anoer%%40frederikssund.dk:Slangerup3550
+rem *** SET url=geo.os2geo.dk/api/export/db-9e9b674ee499b4ff06bfe3cbef2efe1e
+rem *** REM CALL :Indlaes
+rem *** 
+rem *** SET tabel=rfs_frederikssund_havn
+rem *** SET login=anoer%%40frederikssund.dk:Slangerup3550
+rem *** SET url=geo.os2geo.dk/api/export/db-9e9b674ee499b4ff06bfe3cbef3100c7
+rem *** CALL :Indlaes
+rem *** 
+rem *** SET tabel=rfs_henkastet_afffald
+rem *** SET login=anoer%%40frederikssund.dk:Slangerup3550
+rem *** SET url=geo.os2geo.dk/api/export/db-ac3d5b62ebb8d7ce847c60971109cd56
+rem *** CALL :Indlaes
+rem *** 
+rem *** SET tabel=rfs_Vejudstyr
+rem *** SET login=anoer%%40frederikssund.dk:Slangerup3550
+rem *** SET url=geo.os2geo.dk/api/export/db-ac3d5b62ebb8d7ce847c609711b736cf
+rem *** CALL :Indlaes
+rem *** 
+rem *** SET tabel=rfs_Veje_belaegning
+rem *** SET login=anoer%%40frederikssund.dk:Slangerup3550
+rem *** SET url=geo.os2geo.dk/api/export/db-ac3d5b62ebb8d7ce847c609711d79306
+rem *** CALL :Indlaes
+rem *** 
+rem *** SET tabel=rfs_beplantning
+rem *** SET login=anoer%%40frederikssund.dk:Slangerup3550
+rem *** SET url=geo.os2geo.dk/api/export/db-ac3d5b62ebb8d7ce847c609711e9af59
+rem *** CALL :Indlaes
+rem *** 
+rem *** GOTO :EOF
+rem *** 
+rem *** REM --------------------------------------------------------------------------------------------------------------------------------------
+rem *** REM indlæsning i database
+rem *** REM --------------------------------------------------------------------------------------------------------------------------------------
+rem *** 
+rem *** :Indlaes
+rem *** ogr2ogr -skipfailures -overwrite -a_srs "EPSG:25832" -f MSSQLSpatial "%db_connection%" "http://%login%@%url%" OGRGeoJSON -lco "OVERWRITE=YES" -nln %tabel%
+rem *** 
+
+
+
