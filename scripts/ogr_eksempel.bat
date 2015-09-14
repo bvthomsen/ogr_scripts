@@ -27,8 +27,7 @@ set PGCLIENTENCODING=UTF8
 REM ============================================================================================
 REM set aktuelle parameter for host, dbname, user og password til *Postgres* database
 REM ============================================================================================
-rem set "pg_conn=host='myhost' dbname='mydatabase' user='myuser' password='mypassword' port='5432'"
-set "pg_conn=host='f-gis03' dbname='gis_test' user='postgres' password='ukulemy' port='5432'"
+set "pg_conn=host='myhost' dbname='mydatabase' user='myuser' password='mypassword' port='5432'"
 
 REM ============================================================================================
 REM set aktuelle parameter for server og database til *MS SQL Server* database
@@ -41,7 +40,7 @@ REM ============================================================================
 REM Eksempler på upload til hhv. Postgres (linie 1) og MS SQL Server (linie 2) fra div. inddata typer
 REM Alle procedurer har følgende kaldemetode: call <proc> <ogr inddata-definition> <lag fra service eller *> <database forbindelse> <schemanavn> <tabelnavn>
 REM ============================================================================================
-goto kkk
+
 REM ============================================================================================
 REM Eksempel på upload af DAI data fra Miljøportalen (WFS)
 REM ============================================================================================
@@ -60,22 +59,14 @@ set "ogr_inp=http://arealinformation.miljoeportal.dk/gis/services/puls/MapServer
 call %~dp0ogr_postgres.bat "%ogr_inp%" "dmp:REGNBET_UDLEDNING" "%pg_conn%" dai    regnbet_udledning
 call %~dp0ogr_mssql.bat    "%ogr_inp%" "dmp:REGNBET_UDLEDNING" "%ms_conn%" dai    regnbet_udledning
 
-:kkk
 REM ============================================================================================
 REM Eksempel på upload af SUT data fra Kortforsyningen (WFS)
 REM ============================================================================================
-set bbox=%ogr_bbox: =,% & set ogr_bbox=
 
-rem set "wfs_sti=http://kortforsyningen.kms.dk/service?servicename=SutWFS_UTM&client=MapInfo&request=GetCapabilities&service=WFS&login=Kommune250&password=Dfghjkl10&bbox=678577,6178960,702291,6202870"
-rem set "ogr_inp=http://kortforsyningen.kms.dk/service?servicename=SutWFS_UTM&client=MapInfo&service=WFS&login=qgisdk&password=qgisdk&request=GetCapabilities&bbox=%bbox%"
-set "ogr_inp=http://kortforsyningen.kms.dk/service?servicename=SutWFS_UTM&client=MapInfo&request=GetFeature&service=WFS&login=Kommune250&password=Dfghjkl10&bbox=%bbox%"
+set "ogr_inp=http://kortforsyningen.kms.dk/service?servicename=SutWFS_UTM&client=MapInfo&service=WFS&login=demo&password=demo&request=GetCapabilities"
 
 call %~dp0ogr_postgres.bat "%ogr_inp%" "Skel" "%pg_conn%" sut skel
 call %~dp0ogr_mssql.bat    "%ogr_inp%" "Skel" "%ms_conn%" sut skel
-set ogr_bbox=%bbox:,= %
-
-pause
-exit
 
 REM ============================================================================================
 REM Eksempel på upload af data fra GEUS (WFS)
@@ -122,10 +113,8 @@ set ogr_where=
 REM ============================================================================================
 REM Eksempel på upload af data fra os2geo server (GeoJson http)
 REM ============================================================================================
-REM set ogr_inp=myuser:mypassword@first_part_of_http_address
 REM NB! Hvis myuser er en mail adresse i stil med: bruger@kommune.dk skrives det: bruger%%%%40kommune.dk, dvs. @ == %%%%40
 set "ogr_inp=http://bruger%%%%40kommune.dk:brugerPassword@geo.os2geo.dk/api/export"
-set "ogr_inp=http://anoer%%%%40frederikssund.dk:Slangerup3550@geo.os2geo.dk/api/export"
 
 REM Data fra os2geo kommer i SRS LongLat/wgs84, så skift standard SRS fra 25832 (UTM32/ETRS89) til 4326 
 set ogr_epsg=4326
