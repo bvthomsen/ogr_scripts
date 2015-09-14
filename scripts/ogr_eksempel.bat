@@ -101,7 +101,7 @@ REM ============================================================================
 set "ogr_inp=WFS:http://geoservice.plansystem.dk/wfs?version=1.0.0"
 
 REM Eksempel på brug "where" parameter i ogr2ogr; henter kun data fra Frederikssund Kommune
-set ogr_where="komnr=250"
+set "ogr_where=komnr=250"
 
 call %~dp0ogr_postgres.bat "%ogr_inp%" "pdk:theme_pdk_lokalplan_vedtaget_v" "%pg_conn%" pdk lokalplan_vedtaget
 call %~dp0ogr_mssql.bat    "%ogr_inp%" "pdk:theme_pdk_lokalplan_vedtaget_v" "%ms_conn%" pdk lokalplan_vedtaget
