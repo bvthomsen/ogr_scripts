@@ -31,35 +31,39 @@ REM Parm. 6, Objekttype, skal være enten PKT, MPKT, LIN, MLIN, POL, MPOL eller *
 
 REM Konvertering til store bogstaver
 set xp6=%~6
-set xp6=%xp6:p=P%
-set xp6=%xp6:k=K%
-set xp6=%xp6:t=T%
-set xp6=%xp6:m=M%
-set xp6=%xp6:l=L%
-set xp6=%xp6:i=I%
-set xp6=%xp6:n=N%
-set xp6=%xp6:o=O%
+
+if not #%xp6%==# (
+  set xp6=%xp6:p=P%
+  set xp6=%xp6:k=K%
+  set xp6=%xp6:t=T%
+  set xp6=%xp6:m=M%
+  set xp6=%xp6:l=L%
+  set xp6=%xp6:i=I%
+  set xp6=%xp6:n=N%
+  set xp6=%xp6:o=O%
+)
 
 REM Generering af kommandoline stumper til filtrering. 
 set "xp8="
 set "xp9="
-if #%xp6%==#PKT  (set "xp8=OGR_GEOMETRY='POINT'" & set "xp9=")
-if #%xp6%==#MPKT (set "xp8=OGR_GEOMETRY='POINT' OR OGR_GEOMETRY='MULTIPOINT'" & set "xp9=-nlt=PROMOTE_TO_MULTI")
-if #%xp6%==#LIN  (set "xp8=OGR_GEOMETRY='LINESTRING'" & set "xp9=")
-if #%xp6%==#MLIN (set "xp8=OGR_GEOMETRY='LINESTRING' OR OGR_GEOMETRY='MULTILINESTRING'" & set "xp9=-nlt=PROMOTE_TO_MULTI")
-if #%xp6%==#POL  (set "xp8=OGR_GEOMETRY='POLYGON'" & set "xp9=")
-if #%xp6%==#MPOL (set "xp8=OGR_GEOMETRY='POLYGON' OR OGR_GEOMETRY='MULTIPOLYGON'" & set "xp9=-nlt=PROMOTE_TO_MULTI")
+set "xp10="
+if #%xp6%==#PKT  ( set "xp8=OGR_GEOMETRY='POINT'" & set "xp9=")
+if #%xp6%==#MPKT ( set "xp8=OGR_GEOMETRY='POINT' OR OGR_GEOMETRY='MULTIPOINT'" & set "xp9=-nlt PROMOTE_TO_MULTI")
+if #%xp6%==#LIN  ( set "xp8=OGR_GEOMETRY='LINESTRING'" & set "xp9=")
+if #%xp6%==#MLIN ( set "xp8=OGR_GEOMETRY='LINESTRING' OR OGR_GEOMETRY='MULTILINESTRING'" & set "xp9=-nlt PROMOTE_TO_MULTI")
+if #%xp6%==#POL  ( set "xp8=OGR_GEOMETRY='POLYGON'" & set "xp9=")
+if #%xp6%==#MPOL ( set "xp8=OGR_GEOMETRY='POLYGON' OR OGR_GEOMETRY='MULTIPOLYGON'" & set "xp9=-nlt PROMOTE_TO_MULTI" )
 
 REM =====================================================
 REM Opsætning af semipermanente variable
 REM =====================================================
 
-REM Der genereres en evt. ""where"" clause
-if not #%ogr_where%==# if "%xp8%"==" ( set xp8 =-where "%ogr_where%" ) else ( set xp8 =-where "(%xp8%) AND (%ogr_where%)") 
-if     #%ogr_where%==# if "%xp8%"==" ( set "xp8=" )                    else ( set xp8 =-where "%xp8%"                    ) 
+REM Der genereres evt. en tilføjelse til "where" clause
+if     "#%ogr_where%#"=="##" if "#%xp8%#"=="##" ( set "xp10=" )                   else ( set xp10=-where "%xp8%" ) 
+if not "#%ogr_where%#"=="##" if "#%xp8%#"=="##" ( set xp10=-where "%ogr_where%" ) else ( set xp10=-where "(%xp8%) AND (%ogr_where%)" )
 
 REM Der genereres en evt. "bbox" clause
-if not "%ogr_bbox%"=="" (set xp7=-spat %ogr_bbox%) else (set xp7=) 
+if not "#%ogr_bbox%#"=="##" (set xp7=-spat %ogr_bbox%) else (set xp7=) 
 
 REM Sanitycheck af øvrige parametre
 if #%ogr_geom%==# set ogr_geom=geom
@@ -75,7 +79,7 @@ ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS %xp4%" PG:%xp3%
 REM =====================================================
 REM Upload af data til Postgres Server
 REM =====================================================
-ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite -lco SPATIAL_INDEX=FALSE -lco FID="%ogr_fid%" -lco GEOMETRY_NAME="%ogr_geom%" -lco OVERWRITE=YES -nln "%xp4%.%xp5%" -a_srs "EPSG:%ogr_epsg%" %xp6% -f "PostgreSQL" PG:%xp3% %xp1% %xp2% %XP7%
+ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite -lco SPATIAL_INDEX=FALSE -lco FID="%ogr_fid%" -lco GEOMETRY_NAME="%ogr_geom%" -lco OVERWRITE=YES -nln "%xp4%.%xp5%" -a_srs "EPSG:%ogr_epsg%" %xp10% %xp9% -f "PostgreSQL" PG:%xp3% %xp1% %xp2% %XP7%
 
 REM =====================================================
 REM Opretter spatiel index efter generering af tabel

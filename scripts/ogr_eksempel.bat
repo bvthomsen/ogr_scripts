@@ -27,7 +27,7 @@ set PGCLIENTENCODING=UTF8
 REM ============================================================================================
 REM set aktuelle parameter for host, dbname, user og password til *Postgres* database
 REM ============================================================================================
-set "pg_conn=host='myhost' dbname='mydatabase' user='myuser' password='mypassword' port='5432'"
+set "pg_conn=host='f-gis03' dbname='gis_test' user='postgres' password='ukulemy' port='5432'"
 
 REM ============================================================================================
 REM set aktuelle parameter for server og database til *MS SQL Server* database
@@ -46,8 +46,8 @@ REM Eksempel på upload af DAI data fra Miljøportalen (WFS)
 REM ============================================================================================
 set "ogr_inp=http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"
 
-REM <proc>                 <ogr inddata-definition> <lag fra service eller *> <database forbindelse> <schemanavn> <tabelnavn>
-call %~dp0ogr_postgres.bat "%ogr_inp%"              "dmp:ARTSFUND_FL"         "%pg_conn%"            dai          artsfund_fl
+REM <proc>                 <ogr inddata-definition> <lag fra service eller *> <database forbindelse> <schemanavn> <tabelnavn> <objekttype>
+call %~dp0ogr_postgres.bat "%ogr_inp%"              "dmp:ARTSFUND_FL"         "%pg_conn%"            dai          artsfund_fl *
 call %~dp0ogr_mssql.bat    "%ogr_inp%"              "dmp:ARTSFUND_FL"         "%ms_conn%"            dai          artsfund_fl
 
 
@@ -141,4 +141,6 @@ call %~dp0ogr_mssql.bat    "%data_dir%\ADMN_GR.shp" "*" "%ms_conn%" matrikel adm
 REM ============================================================================================
 REM vis sluttid (ikke strengt nødvendigt)
 REM ============================================================================================
+:slut
 @echo %time%
+pause
