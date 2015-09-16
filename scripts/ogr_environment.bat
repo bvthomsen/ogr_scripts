@@ -24,16 +24,22 @@ set "PGCLIENTENCODING=LATIN1"
 REM set "PGCLIENTENCODING=UTF8"
 
 REM =====================================================
+REM Standard schema navn
+REM =====================================================
+REM Postgres
+set "ogr_schema=public"
+REM MS SQL Server
+REM set "ogr_schema=dbo"
+
+REM =====================================================
 REM Navn på geometri felt oprettet af OGR i database tabeller
 REM =====================================================
 set ogr_geom=geom
-REM =====================================================
 
 REM =====================================================
 REM Navn på primary key felt oprettet af OGR i database tabeller
 REM =====================================================
 set ogr_fid=fid
-REM =====================================================
 
 REM =====================================================
 REM Navn på dato felt (varchar (10), indeholder åååå-mm-dd)
@@ -41,7 +47,6 @@ REM Hvis det er lig med <ingenting> oprettes og populeres feltet ikke
 REM =====================================================
 REM set ogr_dato=
 set ogr_dato=hent_dato
-REM =====================================================
 
 REM =====================================================
 REM EPSG værdi for projektion (normalt 25832 aka. UTM32/ETRS89
@@ -49,7 +54,6 @@ REM =====================================================
 REM set ogr_epsg=4326
 REM set ogr_epsg=25833
 set ogr_epsg=25832
-REM =====================================================
 
 REM =====================================================
 REM Parametre til generering af spatielt indeks for *MS SQL Server*
