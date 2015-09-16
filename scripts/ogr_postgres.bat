@@ -29,9 +29,8 @@ set xp5=%xp5: =_% & set xp5=%xp5::=_%
 
 REM Parm. 6, Objekttype, skal være enten PKT, MPKT, LIN, MLIN, POL, MPOL eller *
 
-REM Konvertering til store bogstaver
+REM Konvertering af arg 6 til store bogstaver
 set xp6=%~6
-
 if not #%xp6%==# (
   set xp6=%xp6:p=P%
   set xp6=%xp6:k=K%
@@ -43,7 +42,7 @@ if not #%xp6%==# (
   set xp6=%xp6:o=O%
 )
 
-REM Generering af kommandoline stumper til filtrering. 
+REM Generering af kommandolinie stumper til filtrering. xp10 indeholder del af -where filter udtryk og xp9 indeholder -nlt kommando 
 set "xp8="
 set "xp9="
 set "xp10="
@@ -55,11 +54,11 @@ if #%xp6%==#POL  ( set "xp8=OGR_GEOMETRY='POLYGON'" & set "xp9=")
 if #%xp6%==#MPOL ( set "xp8=OGR_GEOMETRY='POLYGON' OR OGR_GEOMETRY='MULTIPOLYGON'" & set "xp9=-nlt PROMOTE_TO_MULTI" )
 
 REM =====================================================
-REM Opsætning af semipermanente variable
+REM Opsætning og behandling af semipermanente variable
 REM =====================================================
 
-REM Der genereres evt. en tilføjelse til "where" clause
-if     "#%ogr_where%#"=="##" if "#%xp8%#"=="##" ( set "xp10=" )                   else ( set xp10=-where "%xp8%" ) 
+REM -where clause færdiggøres. Tilføjes evt. filter information fra ogr_where
+if     "#%ogr_where%#"=="##" if "#%xp8%#"=="##" ( set "xp10=" ) else ( set xp10=-where "%xp8%" ) 
 if not "#%ogr_where%#"=="##" if "#%xp8%#"=="##" ( set xp10=-where "%ogr_where%" ) else ( set xp10=-where "(%xp8%) AND (%ogr_where%)" )
 
 REM Der genereres en evt. "bbox" clause

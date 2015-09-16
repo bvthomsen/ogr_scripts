@@ -1,4 +1,22 @@
 REM ============================================================================================
+REM 
+REM Eksempler på upload til hhv. Postgres og MS SQL Server fra div. inddata typer
+REM de enkelte eksempler følger samme metode:
+REM
+REM .. Først kaldes ogr_envirnment.bat. Denne sætter path til oGDAL samt en række parametre, der sandsynligvis ikke
+REM    skal ændres på. Se kommentarer i ogr_environment.bat.
+REM .. Herefter sættes en environment variabel med forbindelsesparametre til databasen (pg_conn og/eller ms_conn). Se eksempel i denne fil. 
+REM .. For hver indatakilde sættet en variabel (ogr_inp) med hovedinformationen om inddata kilde: Dette inkludere evt brugernavn og adgangskode 
+REM    en ekskluderer geografisk, objekttype eller andre filtre.
+REM .. For hvertlag, som skal uploades til databasen udføres kommandoprocedure ogr_postgres.bat (for Postgres database) eller ogr_mssql.bat (For ms sql server) 
+REM    Begge kommando procedurer har følgende kaldemetode: call <proc> <ogr inddata-definition> <lag fra service eller *> <database forbindelse> <schemanavn> <tabelnavn> <objekttype eller *>
+REM    <objekttype> kan være PKT (simpelt punkt), MPKT (Multipunkt), LIN (Simpel linie), MLIN (Multilinie), POL (Simpel polygon), MPOL (Multipolygon) eller *. Med * menes, at der ikke 
+REM    genereres filterudtryk for objekttype. Ved angivelse af multi polygon/linie/punkt vil simple objekter automatisk omdannes til multi objekter, således det nye lag kun indeho9lder en objekttype
+REM
+REM == Programmører: Anette Rosengård Poulsen & Bo Victor Thomsen, Frederikssund Kommune      ==
+REM ============================================================================================
+
+REM ============================================================================================
 REM vis start tid (Ikke absolut nødvendig)
 REM ============================================================================================
 @echo %time%
@@ -37,17 +55,12 @@ set "ms_conn=server=f-sql12;database=gis_test;trusted_connection=yes"
 
 
 REM ============================================================================================
-REM Eksempler på upload til hhv. Postgres (linie 1) og MS SQL Server (linie 2) fra div. inddata typer
-REM Alle procedurer har følgende kaldemetode: call <proc> <ogr inddata-definition> <lag fra service eller *> <database forbindelse> <schemanavn> <tabelnavn>
-REM ============================================================================================
-
-REM ============================================================================================
 REM Eksempel på upload af DAI data fra Miljøportalen (WFS)
 REM ============================================================================================
 set "ogr_inp=http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"
 
 REM <proc>                 <ogr inddata-definition> <lag fra service eller *> <database forbindelse> <schemanavn> <tabelnavn> <objekttype>
-call %~dp0ogr_postgres.bat "%ogr_inp%"              "dmp:ARTSFUND_FL"         "%pg_conn%"            dai          artsfund_fl *
+call %~dp0ogr_postgres.bat "%ogr_inp%"              "dmp:ARTSFUND_FL"         "%pg_conn%"            dai          artsfund_fl MPOL
 call %~dp0ogr_mssql.bat    "%ogr_inp%"              "dmp:ARTSFUND_FL"         "%ms_conn%"            dai          artsfund_fl
 
 
