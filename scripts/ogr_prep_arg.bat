@@ -7,7 +7,7 @@ REM ============================================================================
 
 REM =====================================================
 REM Sanitycheck af semipermanente environment variable, 
-REM burde være sat via ogr_environment
+REM (burde være sat via ogr_environment.bat)
 REM =====================================================
 if #%ogr_geom%==# set ogr_geom=geom
 if #%ogr_fid%==# set ogr_fid=fid
