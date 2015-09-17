@@ -1,4 +1,3 @@
-@echo on
 REM ============================================================================================
 REM == Opsætning af generelle environment vars til behandling af spatielle data vha OGR2OGR   ==
 REM == OGR2OGR ver 1.11 bør benyttes                                                          ==

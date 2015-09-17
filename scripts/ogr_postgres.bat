@@ -1,4 +1,3 @@
-@echo on
 REM ============================================================================================
 REM == Upload af spatielle data til Postgres fra vilkålige datakilder                    ==
 REM == OGR2OGR ver 1.11 bør benyttes                                                          ==
@@ -9,7 +8,7 @@ REM =====================================================
 REM Inddata check, alle 6 parametre *skal* være angivet
 REM =====================================================
 
-call %~dp0%ogr_prep_arg.bat %*
+call "%~dp0ogr_prep_arg.bat" %*
 
 REM =====================================================
 REM Opretter relevant schema i database hvis dette ikke eksisterer i forvejen
