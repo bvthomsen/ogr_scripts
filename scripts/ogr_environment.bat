@@ -4,6 +4,15 @@ REM == OGR2OGR ver 1.11 bør benyttes                                            
 REM == Programmører: Anette Rosengård Poulsen & Bo Victor Thomsen, Frederikssund Kommune      ==
 REM ============================================================================================
 
+REM sæt CodePage til Latin-1 (Ingen bøvl med ÆØÅ i kommandolinien og filnavne)
+REM ============================================================================================
+chcp 1252 >nul
+
+REM Sæt "current dir" til opstartsdirectory for script (ikke bydende nødvendigt)
+REM ============================================================================================
+%~d0
+cd "%~p0"
+
 REM =====================================================
 REM Hovedmappe for OSGEO4W (OGR, GDAL og Python)
 REM =====================================================
@@ -16,11 +25,25 @@ REM =====================================================
 set PATH=%OSGEO4W_ROOT%\bin;%PATH%
 for %%f in ("%OSGEO4W_ROOT%\etc\ini\*.bat") do call "%%f"
 
+
+REM =====================================================
+REM Opsætning om upload foregår til ms-sqlserver eller postgres
+REM =====================================================
+
+REM Postgres - Skift myHost, myDatabase, myUSer og myPassword til relevante værdier
+set "ogr_command=%~dp0ogr_postgres.bat"
+rem set "db_conn=host='myHost' dbname='myDatabase' user='myUser' password='myPassword' port='5432'"
+set "db_conn=host='f-gis03' dbname='gis_test' user='postgres' password='ukulemy' port='5432'"
+
+REM MS Sqlserver - Skift myServer, myDatabase til relevante værdier
+REM set "ogr_command=%~dp0ogr_mssql.bat"
+REM set "db_conn=server=myServer;database=myDatabase;trusted_connection=yes"
+
 REM =====================================================
 REM Sætter character-encoding for inddata til *Postgres*
 REM =====================================================
-set "PGCLIENTENCODING=LATIN1"
-REM set "PGCLIENTENCODING=UTF8"
+REM set "PGCLIENTENCODING=LATIN1"
+set "PGCLIENTENCODING=UTF8"
 
 REM =====================================================
 REM Standard schema navn
@@ -71,3 +94,5 @@ REM Eksempel: Frederikssund Kommune....
 set "ogr_bbox=678577 6178960 702291 6202870"
 REM Eksempel: ingen geografisk begræsning....
 REM set "ogr_bbox="
+
+
