@@ -73,9 +73,9 @@ set ogr_dato=hent_dato
 REM =====================================================
 REM EPSG værdi for projektion (normalt 25832 aka. UTM32/ETRS89
 REM =====================================================
-REM set ogr_epsg=4326
-REM set ogr_epsg=25833
-set ogr_epsg=25832
+REM set ogr_epsgs=4326 & set ogr_epsgt=4326
+REM set ogr_epsgs=25833 & set ogr_epsgs=25833
+set ogr_epsgs=25832 & set ogr_epsgt=25832
 
 REM =====================================================
 REM Parametre til generering af spatielt indeks for *MS SQL Server*

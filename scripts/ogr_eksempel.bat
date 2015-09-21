@@ -1,4 +1,4 @@
-@echo off
+@echo on
 REM Opsætning at generelle parametre for upload proces (absolut nødvendigt)
 REM ============================================================================================
 call "%~dp0ogr_environment.bat"
@@ -173,8 +173,9 @@ REM NB!! Indeholder username snabel-a skal det angives som %%%%%%%%40 (Don't ask
 REM      http://myUser@kommune.dk:myPassword@geo.os2geo.dk/api/export" virker *ikke*, men nedenstående gør:
 set "ogr_inp=http://myUser%%%%%%%%40kommune.dk:myPassword@geo.os2geo.dk/api/export"
 
-REM sæt srs til 4326 (longlat/wgs84), da data modtages i denne SRS
-set "ogr_epsg=4326"
+REM sæt source srs til 4326 (longlat/wgs84), da data modtages i denne srs. ogr_epsgt forbliver den normale 25832; data bliver 
+REM herved konverteret til normal srs samtidigt med upload til databasen.
+set "ogr_epsgs=4326"
 
 call "%ogr_command%" "%ogr_inp%/db-0cf16ed01ec89bd988508ebba0261cda" "OGRGeoJSON" "%db_conn%" rfs badevand                  *
 call "%ogr_command%" "%ogr_inp%/db-5577a0a6d7b13f71eb4cebd47fc57374" "OGRGeoJSON" "%db_conn%" rfs informationer_badevand    *
@@ -191,7 +192,7 @@ call "%ogr_command%" "%ogr_inp%/db-ac3d5b62ebb8d7ce847c609711d79306" "OGRGeoJSON
 call "%ogr_command%" "%ogr_inp%/db-ac3d5b62ebb8d7ce847c609711e9af59" "OGRGeoJSON" "%db_conn%" rfs beplantning               *
 
 REM nulstil SRS til alm. værdi
-set "ogr_epsg=25832"
+set "ogr_epsgs=25832"
 
 REM Upload af tab - filer (DAGI zip data downloadet fra Kortfosyningen)
 REM ============================================================================================
@@ -223,5 +224,3 @@ REM vis sluttid
 @echo ============================================================================================
 @echo Sluttid: %date% %time%
 @echo ============================================================================================
-
-   

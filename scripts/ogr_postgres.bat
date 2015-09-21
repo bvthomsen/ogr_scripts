@@ -18,7 +18,7 @@ ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS %xp4%" PG:%xp3%
 REM =====================================================
 REM Upload af data til Postgres Server
 REM =====================================================
-ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite -lco SPATIAL_INDEX=FALSE -lco FID="%ogr_fid%" -lco GEOMETRY_NAME="%ogr_geom%" -lco OVERWRITE=YES -nln "%xp4%.%xp5%" -a_srs "EPSG:%ogr_epsg%" %xp10% %xp9% -f "PostgreSQL" PG:%xp3% %xp1% %xp2% %XP7%
+ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite -lco SPATIAL_INDEX=FALSE -lco FID="%ogr_fid%" -lco GEOMETRY_NAME="%ogr_geom%" -lco OVERWRITE=YES -nln "%xp4%.%xp5%" %xp11% %xp10% %xp9% -f "PostgreSQL" PG:%xp3% %xp1% %xp2% %XP7%
 
 REM =====================================================
 REM Opretter spatiel index efter generering af tabel
