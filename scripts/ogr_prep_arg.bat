@@ -17,18 +17,6 @@ REM =====================================================
 @echo Job startet %date% %time%
 
 REM =====================================================
-REM Sanitycheck af semipermanente environment variable, 
-REM (burde være sat via ogr_environment.bat)
-REM =====================================================
-if #%ogr_geom%==# set ogr_geom=geom
-if #%ogr_fid%==# set ogr_fid=fid
-if #%ogr_epsgs%==# set ogr_epsgs=25832
-if #%ogr_epsgt%==# set ogr_epsgt=25832
-if "%ogr_spatial%"=="" set "ogr_spatial=350000,6020000,950000,6450000"
-if "%PGCLIENTENCODING%"=="" set "PGCLIENTENCODING=LATIN1"
-if #%ogr_schema%==# set "ogr_schema=dbo"
-
-REM =====================================================
 REM Inddata check, alle 6 parametre *skal* være angivet
 REM =====================================================
 
@@ -94,4 +82,11 @@ REM =====================================================
 REM opsætning af epsg
 REM =====================================================
 if #%ogr_epsgt%==#%ogr_epsgs% (set "xp11=-a_srs EPSG:%ogr_epsgt%") else (set "xp11=-s_srs EPSG:%ogr_epsgs% -t_srs EPSG:%ogr_epsgt%")
+
+REM =====================================================
+REM Behandling af parameter ogr_load
+REM =====================================================
+REM if #%ogr_load%==#OVERWRITE (set "xp12=-a_srs EPSG:%ogr_epsgt%") else (set "xp11=-s_srs EPSG:%ogr_epsgs% -t_srs EPSG:%ogr_epsgt%")
+
+
 

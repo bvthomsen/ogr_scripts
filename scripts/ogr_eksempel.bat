@@ -1,13 +1,6 @@
-@echo on
 REM Opsætning at generelle parametre for upload proces (absolut nødvendigt)
 REM ============================================================================================
-call "%~dp0ogr_environment.bat"
-
-REM vis start tid (Ikke absolut nødvendig)
-REM ============================================================================================
-@echo ============================================================================================
-@echo Starttid: %date% %time%
-@echo ============================================================================================
+@call "%~dp0ogr_environment.bat"
 
 REM ============================================================================================
 REM    Eksempler på upload til enten Postgres elller MS SQL Server fra div. inddata typer
