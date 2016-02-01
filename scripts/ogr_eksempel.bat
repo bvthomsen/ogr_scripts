@@ -187,17 +187,17 @@ call "%ogr_command%" "%ogr_inp%/db-ac3d5b62ebb8d7ce847c609711e9af59" "OGRGeoJSON
 REM nulstil SRS til alm. værdi
 set "ogr_epsgs=25832"
 
-REM Upload af tab - filer (DAGI zip data downloadet fra Kortfosyningen)
+REM Upload af tab - filer (DAGI data fra Kortforsyningen) - udskift myUser og myPassword til rel. værdier
 REM ============================================================================================
-set "ogr_inp=C:\temp\DAGIREF_MAPINFO_UTM32-EUREF89\ADM\"
+set "ogr_inp=http://kortforsyningen.kms.dk/service?servicename=dagi_gml2&client=QGIS&request=GetCapabilities&service=WFS&version=1.1.1&LOGIN=myUser&PASSWORD=myPassword
 
-call "%ogr_command%" "%ogr_inp%SOGN.tab       * "%db_conn%" dagi sogn       *
-call "%ogr_command%" "%ogr_inp%RETSKR.tab     * "%db_conn%" dagi retskr     *
-call "%ogr_command%" "%ogr_inp%REGION.tab     * "%db_conn%" dagi region     *
-call "%ogr_command%" "%ogr_inp%POSTNUMMER.tab * "%db_conn%" dagi postnummer *
-call "%ogr_command%" "%ogr_inp%RETSKR.tab     * "%db_conn%" dagi retskr     *
-call "%ogr_command%" "%ogr_inp%OPSTILKR.tab   * "%db_conn%" dagi opstilkr   *
-call "%ogr_command%" "%ogr_inp%KOMMUNE.tab    * "%db_conn%" dagi kommune    *
+call "%ogr_command%" "%ogr_inp%" "kms:KOMMUNE10"          "%ogr_conn%" dbo dagi_kommune          *
+call "%ogr_command%" "%ogr_inp%" "kms:OPSTILLINGSKREDS10" "%ogr_conn%" dbo dagi_opstillingskreds *
+call "%ogr_command%" "%ogr_inp%" "kms:SOGN10"             "%ogr_conn%" dbo dagi_sogn             *
+call "%ogr_command%" "%ogr_inp%" "kms:POLITIKREDS10"      "%ogr_conn%" dbo dagi_politikreds      *
+call "%ogr_command%" "%ogr_inp%" "kms:REGION10"           "%ogr_conn%" dbo dagi_region           *
+call "%ogr_command%" "%ogr_inp%" "kms:RETSKREDS10"        "%ogr_conn%" dbo dagi_retskreds        *
+call "%ogr_command%" "%ogr_inp%" "kms:POSTDISTRIKT10"     "%ogr_conn%" dbo dagi_postdistrikt     *
 
 REM Upload af shape - filer (Matrikel zip data downloadet fra Kortfosyningen)
 REM ============================================================================================

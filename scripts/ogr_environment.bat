@@ -1,4 +1,5 @@
-@echo off
+@set "echostate=off"
+@echo %echostate%
 REM ============================================================================================
 REM == Opsætning af generelle environment vars til behandling af spatielle data vha OGR2OGR   ==
 REM == OGR2OGR ver 1.11 bør benyttes                                                          ==
@@ -27,9 +28,9 @@ REM =====================================================
 REM Alternativ opsætning for Gisinternals-GDAL, f.eks. i C:\GDALROOT 
 REM =====================================================
 
-REM for /f "delims=" %%A in ('echo') do set "echostate=%%A"
 REM call C:\GDALROOT\SetSDKShell setenv hideoci
-REM set echostate=%echostate:.=% & @echo %echostate:ECHO is =%
+REM @echo %echostate%
+
 
 REM =====================================================
 REM Opsætning om upload foregår til ms-sqlserver eller postgres
@@ -44,7 +45,7 @@ REM set "ogr_command=%~dp0ogr_mssql.bat"
 REM set "db_conn=server=myServer;database=myDatabase;trusted_connection=yes"
 
 REM =====================================================
-REM Sætter character-encoding for inddata til *Postgres*
+REM *KUN Postgres* Sætter character-encoding for inddata  
 REM =====================================================
 REM set "PGCLIENTENCODING=LATIN1"
 set "PGCLIENTENCODING=UTF8"
@@ -52,9 +53,9 @@ set "PGCLIENTENCODING=UTF8"
 REM =====================================================
 REM Standard schema navn
 REM =====================================================
-REM Postgres
+REM Postgres....
 set "ogr_schema=public"
-REM MS SQL Server
+REM MS SQL Server....
 REM set "ogr_schema=dbo"
 
 REM =====================================================
@@ -84,8 +85,10 @@ REM set ogr_epsgs=25833 & set ogr_epsgs=25833
 set ogr_epsgs=25832 & set ogr_epsgt=25832
 
 REM =====================================================
-REM Parametre til generering af spatielt indeks for *MS SQL Server*
-REM Område definition: minx,miny,maxx,maxy  - koordinatværdier angives i ogr_epsgt defineret projektion
+REM * KUN MS SQL Server og GDAL 1.x * Parametre til 
+REM generering af spatielt indeks.  
+REM Område definition: minx,miny,maxx,maxy
+REM (koordinatværdier angives i ogr_epsgt defineret projektion)
 REM =====================================================
 REM Eksempel Danmark.. (får ikke hele søterritoriet med)
 set "ogr_spatial=350000,6020000,950000,6450000"
@@ -109,7 +112,7 @@ REM             forventes at være kompatibelt med inddata
 REM TRUNCATE  : Alle data i en eksisterende tabel slettes første. Derefter tilføjes
 REM             inddata til den nu tomme, men eksisterende tabel. Tabel struktur 
 REM             forventes at være kompatibelt med inddata. TRUCATE benyttes, hvis man har 
-REM             entiteter i databasen (VIEWs o.lign.) som afhænger af eksstensen af tabellen.
+REM             entiteter i databasen (VIEWs o.lign.) som afhænger af eksistensen af tabellen.
 REM =====================================================
 set "ogr_load=OVERWRITE"
 REM set "ogr_load=APPEND"
