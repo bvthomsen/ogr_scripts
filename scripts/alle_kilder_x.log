@@ -1,0 +1,45 @@
+============================================================================================
+Starttid: 14-03-2016 15:19:40,05
+============================================================================================
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://kortforsyningen.kms.dk/service?servicename=SutWFS_UTM&client=MapInfo&request=GetCapabilities&service=WFS&login=Kommune250&password=Dfghjkl10&bbox=678577,6178960,702291,6202870" / Lag... "Vej"
+Database.. "server=f-sql12;database=gis_test;trusted_connection=yes" 
+Schema.... sut / Tabel... vej / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-03-2016 15:19:40,15
+Kommando.. ogr2ogr -gt 100000 -skipfailures -overwrite  -lco FID="ogr_fid" -lco SPATIAL_INDEX=NO -lco GEOM_NAME="sp_geometry" -lco OVERWRITE=YES -lco SCHEMA="sut" -nln "vej" -a_srs EPSG:25832   -f "MSSQLSpatial" MSSQL:"server=f-sql12;database=gis_test;trusted_connection=yes"  "http://kortforsyningen.kms.dk/service?servicename=SutWFS_UTM&client=MapInfo&request=GetCapabilities&service=WFS&login=Kommune250&password=Dfghjkl10&bbox=678577,6178960,702291,6202870"  "Vej" 
+Kommando.. ogrinfo -q -sql "EXEC dbo.ChangeIdentityColumn @schema='sut', @table='vej'" MSSQL:"server=f-sql12;database=gis_test;trusted_connection=yes" 
+Kommando.. ogrinfo -q -sql "CREATE SPATIAL INDEX  [SPX_vej] ON [sut].[vej] ([sp_geometry]) USING GEOMETRY_GRID WITH (BOUNDING_BOX =(350000,6020000,950000,6450000))" MSSQL:"server=f-sql12;database=gis_test;trusted_connection=yes" 
+Kommando.. ogrinfo -q -sql "EXEC dbo.ReplaceAccent @schemaname='sut', @tablename='vej'" MSSQL:"server=f-sql12;database=gis_test;trusted_connection=yes" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE [sut].[vej] ADD [hent_dato] varchar(10) NULL CONSTRAINT [DF_sut_vej_hent_dato] DEFAULT (CONVERT ( varchar(10), getdate(), 120))" MSSQL:"server=f-sql12;database=gis_test;trusted_connection=yes" 
+Kommando.. ogrinfo -q -sql "UPDATE [sut].[vej]  SET hent_dato=CONVERT ( varchar(10), getdate(), 120)" MSSQL:"server=f-sql12;database=gis_test;trusted_connection=yes" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://kortforsyningen.kms.dk/service?servicename=SutWFS_UTM&client=MapInfo&request=GetCapabilities&service=WFS&login=Kommune250&password=Dfghjkl10&bbox=678577,6178960,702291,6202870" / Lag... "Skel"
+Database.. "server=f-sql12;database=gis_test;trusted_connection=yes" 
+Schema.... sut / Tabel... skel / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-03-2016 15:19:52,78
+Kommando.. ogr2ogr -gt 100000 -skipfailures -overwrite  -lco FID="ogr_fid" -lco SPATIAL_INDEX=NO -lco GEOM_NAME="sp_geometry" -lco OVERWRITE=YES -lco SCHEMA="sut" -nln "skel" -a_srs EPSG:25832   -f "MSSQLSpatial" MSSQL:"server=f-sql12;database=gis_test;trusted_connection=yes"  "http://kortforsyningen.kms.dk/service?servicename=SutWFS_UTM&client=MapInfo&request=GetCapabilities&service=WFS&login=Kommune250&password=Dfghjkl10&bbox=678577,6178960,702291,6202870"  "Skel" 
+Kommando.. ogrinfo -q -sql "EXEC dbo.ChangeIdentityColumn @schema='sut', @table='skel'" MSSQL:"server=f-sql12;database=gis_test;trusted_connection=yes" 
+Kommando.. ogrinfo -q -sql "CREATE SPATIAL INDEX  [SPX_skel] ON [sut].[skel] ([sp_geometry]) USING GEOMETRY_GRID WITH (BOUNDING_BOX =(350000,6020000,950000,6450000))" MSSQL:"server=f-sql12;database=gis_test;trusted_connection=yes" 
+Kommando.. ogrinfo -q -sql "EXEC dbo.ReplaceAccent @schemaname='sut', @tablename='skel'" MSSQL:"server=f-sql12;database=gis_test;trusted_connection=yes" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE [sut].[skel] ADD [hent_dato] varchar(10) NULL CONSTRAINT [DF_sut_skel_hent_dato] DEFAULT (CONVERT ( varchar(10), getdate(), 120))" MSSQL:"server=f-sql12;database=gis_test;trusted_connection=yes" 
+Kommando.. ogrinfo -q -sql "UPDATE [sut].[skel]  SET hent_dato=CONVERT ( varchar(10), getdate(), 120)" MSSQL:"server=f-sql12;database=gis_test;trusted_connection=yes" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://kortforsyningen.kms.dk/service?servicename=SutWFS_UTM&client=MapInfo&request=GetCapabilities&service=WFS&login=Kommune250&password=Dfghjkl10&bbox=678577,6178960,702291,6202870" / Lag... "Skelpunkt"
+Database.. "server=f-sql12;database=gis_test;trusted_connection=yes" 
+Schema.... sut / Tabel... skelpunkt / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-03-2016 15:20:29,45
+Kommando.. ogr2ogr -gt 100000 -skipfailures -overwrite  -lco FID="ogr_fid" -lco SPATIAL_INDEX=NO -lco GEOM_NAME="sp_geometry" -lco OVERWRITE=YES -lco SCHEMA="sut" -nln "skelpunkt" -a_srs EPSG:25832   -f "MSSQLSpatial" MSSQL:"server=f-sql12;database=gis_test;trusted_connection=yes"  "http://kortforsyningen.kms.dk/service?servicename=SutWFS_UTM&client=MapInfo&request=GetCapabilities&service=WFS&login=Kommune250&password=Dfghjkl10&bbox=678577,6178960,702291,6202870"  "Skelpunkt" 
+Kommando.. ogrinfo -q -sql "EXEC dbo.ChangeIdentityColumn @schema='sut', @table='skelpunkt'" MSSQL:"server=f-sql12;database=gis_test;trusted_connection=yes" 
+Kommando.. ogrinfo -q -sql "CREATE SPATIAL INDEX  [SPX_skelpunkt] ON [sut].[skelpunkt] ([sp_geometry]) USING GEOMETRY_GRID WITH (BOUNDING_BOX =(350000,6020000,950000,6450000))" MSSQL:"server=f-sql12;database=gis_test;trusted_connection=yes" 
+Kommando.. ogrinfo -q -sql "EXEC dbo.ReplaceAccent @schemaname='sut', @tablename='skelpunkt'" MSSQL:"server=f-sql12;database=gis_test;trusted_connection=yes" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE [sut].[skelpunkt] ADD [hent_dato] varchar(10) NULL CONSTRAINT [DF_sut_skelpunkt_hent_dato] DEFAULT (CONVERT ( varchar(10), getdate(), 120))" MSSQL:"server=f-sql12;database=gis_test;trusted_connection=yes" 
+Kommando.. ogrinfo -q -sql "UPDATE [sut].[skelpunkt]  SET hent_dato=CONVERT ( varchar(10), getdate(), 120)" MSSQL:"server=f-sql12;database=gis_test;trusted_connection=yes" 

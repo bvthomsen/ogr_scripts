@@ -17,6 +17,11 @@ REM =====================================================
 @echo Job startet %date% %time%
 
 REM =====================================================
+REM sanity check på variable vedr. overwrite / truncate functioner
+REM =====================================================
+if #%ogr_load%==# set "ogr_load=OVERWRITE"
+
+REM =====================================================
 REM Inddata check, alle 6 parametre *skal* være angivet
 REM =====================================================
 
@@ -34,6 +39,8 @@ if #%~4==#* (set xp4=%ogr_schema%) else (set xp4=%~4)
 
 REM Parm. 5, Navn for ny tabel; angiv en "*" hvis lagnavn Ã¸nskes benyttet 
 if #%~5==#* (set xp5=%xp2%) else (set xp5=%~5)
+set xp12=%xp5%
+if not #%ogr_load%==#OVERWRITE set "xp5=%xp12%_faora_hu_ul"
 
 REM Tabelnavn renses for tumpetegn (Tilføjes efter behov)
 set xp5=%xp5: =_% & set xp5=%xp5::=_%
@@ -76,17 +83,9 @@ if     "#%ogr_where%#"=="##" if "#%xp8%#"=="##" ( set "xp10=" ) else ( set xp10=
 if not "#%ogr_where%#"=="##" if "#%xp8%#"=="##" ( set xp10=-where "%ogr_where%" ) else ( set xp10=-where "(%xp8%) AND (%ogr_where%)" )
 
 REM Der genereres en evt. "bbox" clause
-if not "%ogr_bbox%"=="" (set xp7=-spat %ogr_bbox%) else (set xp7=) 
+if not "%ogr_bbox%"=="" (set "xp7=-spat %ogr_bbox%") else (set "xp7=") 
 
 REM =====================================================
 REM opsætning af epsg
 REM =====================================================
 if #%ogr_epsgt%==#%ogr_epsgs% (set "xp11=-a_srs EPSG:%ogr_epsgt%") else (set "xp11=-s_srs EPSG:%ogr_epsgs% -t_srs EPSG:%ogr_epsgt%")
-
-REM =====================================================
-REM Behandling af parameter ogr_load
-REM =====================================================
-REM if #%ogr_load%==#OVERWRITE (set "xp12=-a_srs EPSG:%ogr_epsgt%") else (set "xp11=-s_srs EPSG:%ogr_epsgs% -t_srs EPSG:%ogr_epsgt%")
-
-
-
