@@ -4,11 +4,14 @@ Forskellige dos scripts som vi benytter i Frederikssund Kommune til upload til /
 Systemet består af en række grund-scripts, som håndterer upload af data til database server på en robust og sikker måde.<br>
 Repository indeholder endvidere en række eksempler på upload af data fra hhv. Kortforsyningen og div danske wfs baserede systemer
 
+## Forudsætninger:
+En Windows PC ;-) samt download og installation af en GDAL/OGR distribution. Se http://www.gisinternals.com/
+
 ## Initiel opsætning:
 
 Script **ogr_environment.cmd** indeholder værdisætning af en lang række parametre til systemet.
 
-- Kald af GDAL opsætning procedure
+- Kald af GDAL opsætnings procedure
 - Opsætning hvilken database type, der skal benyttes
 - Værdisætning af en lang række ekstra parametre
 
@@ -45,8 +48,6 @@ Der findes et eksempel på et "wrapper" script, som vil "omdirigere" alt logging
 Hvis selve scriptet hedder "alle_kilder_x.cmd" skal wrapper-script kaldes "alle_kilder_x.log.cmd". Ved start af "alle_kilder_x.log.cmd" autostartes "alle_kilder_x.cmd" og vil producere en logfil ved navn: "alle_kilder_x.log"
 
 Generelt : Hvis scriptet hedder "x.cmd" omdøbes wrapperscript til "x.log.cmd" og vil producere en logfil "x.log" ved udførelse af "x.log.cmd"
-
-
 
 ## Øvrige scripts
 
