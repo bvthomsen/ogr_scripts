@@ -30,7 +30,7 @@ Hvert kald defineres af 6 parametre:
 5. *Tabel navn*: Navn på tabel i databasen
 6. *Objekttype*: Et nøgleord, som bestemmer hvilken geografisk objekttype, der skal genereres i databasen: **PKT**
 for simpelt punkt, **MPKT** for multipunkt, **LIN** for simpel linie, **MLIN** for multilinie, **POL** for simpel polygon, **MPOL** for multipolygon og **<nowiki>*</nowiki>** for alle typer.
-Hvis man ikke har valgt **<nowiki>*</nowiki>**, vil scriptet automatisk filltrere data fra, som ikke er af den valgte type. Har man dog valgt en af *multi* typerne, vil data af samme *simple* type også tages med, men vil automatisk blive omdannet til et multitype data.
+Hvis man ikke har valgt **<nowiki>*</nowiki>**, vil scriptet automatisk frasortere data, som ikke er af den valgte type. Har man dog valgt en af *multi* typerne, vil data af samme *simple* type medtages, men vil automatisk blive omdannet til multitype data.
 
 I eksempel-scriptet **Alle_kilder_x.cmd** er der eksempler på indlæsning fra WFS-, Tab- og HTTP GeoJSON- datakilder. Der er ikke nogen shape-fil eksempler, men import fra shapefiler er understøttet. Benyt et tab-fil eksempel som skabelon
 
