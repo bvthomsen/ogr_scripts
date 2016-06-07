@@ -97,6 +97,7 @@ BEGIN
       -- source and target in same schema -> rename source table
       SELECT @sql = @sourceschema + '.' + @sourcetable
       EXEC sp_rename @sql, @targettable;
+      UPDATE dbo.geometry_colums SET f_table_name = @targettable where UPPER(f_table_schema) = UPPER(@sourceschema) AND UPPER(f_table_name) = UPPER(@sourcetable);
     END
     ELSE
     BEGIN
