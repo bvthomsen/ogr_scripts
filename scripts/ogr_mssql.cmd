@@ -1,18 +1,18 @@
 REM ============================================================================================
-REM == Upload af spatielle data til MS SQL Server fra vilkålige datakilder                    ==
-REM == OGR2OGR ver 1.11 bør benyttes                                                          ==
-REM == Programmører: Bo Victor Thomsen, Frederikssund Kommune                                 ==
+REM == Upload af spatielle data til MS SQL Server fra vilkÃ¥lige datakilder                    ==
+REM == OGR2OGR ver 1.11 bÃ¸r benyttes                                                          ==
+REM == ProgrammÃ¸rer: Bo Victor Thomsen, Frederikssund Kommune                                 ==
 REM ============================================================================================
 
 REM =====================================================
-REM Inddata check, alle 6 parametre *skal* være angivet
+REM Inddata check, alle 6 parametre *skal* vÃ¦re angivet
 REM =====================================================
 call "%~dp0ogr_prep_arg.cmd" %*
 
 REM =====================================================
 REM Upload af data til MS SQL Server (uden spatiel indeks)
 REM =====================================================
-@echo Kommando.. ogr2ogr -gt 100000 -skipfailures -overwrite %ogr_xtra% -lco FID="%ogr_fid%" -lco SPATIAL_INDEX=NO -lco GEOM_NAME="%ogr_geom%" -lco OVERWRITE=YES -lco SCHEMA="%xp4%" -nln "%xp5%" %xp11% %xp9% %xp10% -f "MSSQLSpatial" MSSQL:%xp3% %xp1% %xp2% %xp7%
+@echo Kommando.. ogr2ogr -gt 100000 -skipfailures -overwrite %ogr_xtra% -lco FID="%ogr_fid%" -lco GEOM_NAME="%ogr_geom%" -lco OVERWRITE=YES -lco SCHEMA="%xp4%" -nln "%xp5%" %xp11% %xp9% %xp10% -f "MSSQLSpatial" MSSQL:%xp3% %xp1% %xp2% %xp7%
 ogr2ogr -gt 100000 -skipfailures -overwrite %ogr_xtra% -lco FID="%ogr_fid%" -lco GEOM_NAME="%ogr_geom%" -lco OVERWRITE=YES -lco SCHEMA="%xp4%" -nln "%xp5%" %xp11% %xp9% %xp10% -f "MSSQLSpatial" MSSQL:%xp3% %xp1% %xp2% %xp7%
 
 REM =====================================================
@@ -28,15 +28,15 @@ REM =====================================================
 ogrinfo -q -sql "CREATE SPATIAL INDEX  [SPX_%xp5%] ON [%xp4%].[%xp5%] ([%ogr_geom%]) USING GEOMETRY_GRID WITH (BOUNDING_BOX =(%ogr_spatial%))" MSSQL:%xp3%
 
 REM =====================================================
-REM Erstat UTF8 repræsentation af æøå o.l. til Latin-1 repræsentation
-REM ogr2ogr genererer varchar til tekstfelter. Dette vil få UTF8 baserede data til at
-REM blive misrepræsenteret mht. æøå o.l. Nedenstående kommando retter op på dette.
+REM Erstat UTF8 reprÃ¦sentation af Ã¦Ã¸Ã¥ o.l. til Latin-1 reprÃ¦sentation
+REM ogr2ogr genererer varchar til tekstfelter. Dette vil fÃ¥ UTF8 baserede data til at
+REM blive misreprÃ¦senteret mht. Ã¦Ã¸Ã¥ o.l. NedenstÃ¥ende kommando retter op pÃ¥ dette.
 REM =====================================================
 @echo Kommando.. ogrinfo -q -sql "EXEC dbo.ReplaceAccent @schemaname='%xp4%', @tablename='%xp5%'" MSSQL:%xp3%
 ogrinfo -q -sql "EXEC dbo.ReplaceAccent @schemaname='%xp4%', @tablename='%xp5%'" MSSQL:%xp3%
 
 REM =====================================================
-REM Hvis ogr_dato er sat, autogenereres der et nyt felt, som indeholder dato for indlægning af data 
+REM Hvis ogr_dato er sat, autogenereres der et nyt felt, som indeholder dato for indlÃ¦gning af data 
 REM =====================================================
 if not #%ogr_dato%==# (
   @echo Kommando.. ogrinfo -q -sql "ALTER TABLE [%xp4%].[%xp5%] ADD [%ogr_dato%] varchar(10) NULL CONSTRAINT [DF_%xp4%_%xp5%_%ogr_dato%] DEFAULT (CONVERT ( varchar(10), getdate(), 120))" MSSQL:%xp3%
@@ -46,7 +46,7 @@ if not #%ogr_dato%==# (
 )
 
 REM =====================================================
-REM OVERWRITE, TRUNCATE færdigbehandling 
+REM OVERWRITE, TRUNCATE fÃ¦rdigbehandling 
 REM =====================================================
 if not %xp5%==%xp12% (
   @echo Kommando.. ogrinfo -q -sql "EXEC dbo.TransferTable @sourceschema='%xp4%', @sourcetable='%xp5%', @targetschema='%xp4%', @targettable='%xp12%'" MSSQL:%xp3%
