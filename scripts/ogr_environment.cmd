@@ -13,10 +13,11 @@ REM Opsætning af GDAL miljø - Kald af opsætningsfil mht. path og andre env var.
 REM ============================================================================================
 
 REM GDAL v. 1.x fra netværk (Hentet fra http://gisinternals.com)
-call Q:\Scripts\GDAL\release-1800-x64-gdal-1-11-mapserver-6-4\SDKShell.bat setenv hideoci >NUL
+call "Q:\Program Files\GDAL\release-1800-x64-gdal-1-11-4-mapserver-6-4-3\SDKShell.bat" setenv hideoci >NUL
 
 REM GDAL v. 2.x fra netværk (Hentet fra http://gisinternals.com)
-::call Q:\Scripts\GDAL\release-1800-x64-gdal-mapserver\SDKShell.bat setenv hideoci >NUL
+::call "Q:\Program Files\GDAL\release-1800-x64-gdal-2-1-0-mapserver-7-0-1\SDKShell.bat" setenv hideoci >NUL
+
 @echo %echostate%
 
 REM ============================================================================================
@@ -128,5 +129,5 @@ REM =====================================================
 set "ogr_xtra="
 
 @echo ============================================================================================
-@echo Starttid: %date% %time%
+@echo Starttid: %date% %time% %ogr_command%
 @echo ============================================================================================

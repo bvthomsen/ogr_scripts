@@ -12,8 +12,8 @@ call "%~dp0ogr_prep_arg.cmd" %*
 REM =====================================================
 REM Upload af data til MS SQL Server (uden spatiel indeks)
 REM =====================================================
-@echo Kommando.. ogr2ogr -gt 100000 -skipfailures -overwrite %ogr_xtra% -lco FID="%ogr_fid%" -lco SPATIAL_INDEX=NO -lco GEOM_NAME="%ogr_geom%" -lco OVERWRITE=YES -lco SCHEMA="%xp4%" -nln "%xp5%" %xp11% %xp9% %xp10% -f "MSSQLSpatial" MSSQL:%xp3% %xp1% %xp2% %xp7%
-ogr2ogr -gt 100000 -skipfailures -overwrite %ogr_xtra% -lco FID="%ogr_fid%" -lco SPATIAL_INDEX=NO -lco GEOM_NAME="%ogr_geom%" -lco OVERWRITE=YES -lco SCHEMA="%xp4%" -nln "%xp5%" %xp11% %xp9% %xp10% -f "MSSQLSpatial" MSSQL:%xp3% %xp1% %xp2% %xp7%
+@echo Kommando.. ogr2ogr -gt 100000 -skipfailures -overwrite %ogr_xtra% -lco FID="%ogr_fid%" -lco SPATIAL_INDEX=NO -lco GEOMETRY_NAME="%ogr_geom%" -lco OVERWRITE=YES -lco SCHEMA="%xp4%" -nln "%xp5%" %xp11% %xp9% %xp10% -f "MSSQLSpatial" MSSQL:%xp3% %xp1% %xp2% %xp7%
+ogr2ogr -gt 100000 -skipfailures -overwrite %ogr_xtra% -lco FID="%ogr_fid%" -lco SPATIAL_INDEX=NO -lco GEOMETRY_NAME="%ogr_geom%" -lco OVERWRITE=YES -lco SCHEMA="%xp4%" -nln "%xp5%" %xp11% %xp9% %xp10% -f "MSSQLSpatial" MSSQL:%xp3% %xp1% %xp2% %xp7%
 
 REM =====================================================
 REM Lav identity column om til alm. integer 

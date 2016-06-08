@@ -19,10 +19,12 @@ BEGIN
   SET NOCOUNT ON 
 
   DECLARE @object_id int
+  DECLARE @rowCount int
   DECLARE @sql nvarchar(999)
   
   --- Find objectid for source table
-  SELECT @object_id = A.OBJECT_ID FROM sys.objects A INNER JOIN sys.schemas B ON A.SCHEMA_ID = B.SCHEMA_ID 
+    SELECT @object_id = NULL 
+    SELECT @object_id = A.OBJECT_ID FROM sys.objects A INNER JOIN sys.schemas B ON A.SCHEMA_ID = B.SCHEMA_ID 
 	WHERE TYPE = 'U' AND UPPER(B.NAME) = UPPER(@sourceschema) AND UPPER(A.NAME) = UPPER(@sourcetable)
   IF @object_id IS NULL
   BEGIN 
@@ -31,45 +33,59 @@ BEGIN
   END
 
   --- Find objectid for target table
+  SELECT @object_id = NULL 
   SELECT @object_id = A.OBJECT_ID FROM sys.objects A INNER JOIN sys.schemas B ON A.SCHEMA_ID = B.SCHEMA_ID 
 	WHERE TYPE = 'U' AND UPPER(B.NAME) = UPPER(@targetschema) AND UPPER(A.NAME) = UPPER(@targettable)
-  IF @object_id IS NULL -- 
+  IF @object_id IS NULL  
   BEGIN 
-    IF @sourceschema = @targetschema
+--    IF @sourceschema = @targetschema
+--    BEGIN
+--      -- source and target in same schema -> rename source table
+--      SELECT @sql = @sourceschema + '.' + @sourcetable
+--      EXEC sp_rename @sql, @targettable;
+--      DELETE FROM dbo.geometry_columns where UPPER(f_table_schema) = UPPER(@sourceschema) AND UPPER(f_table_name) = UPPER(@targettable);
+--      UPDATE dbo.geometry_columns SET f_table_name = @targettable where UPPER(f_table_schema) = UPPER(@sourceschema) AND UPPER(f_table_name) = UPPER(@sourcetable);
+
+--    END
+--    ELSE
+--    BEGIN
+      -- source and target in different schema -> raise error
+      RAISERROR ('Target table does not exist', 16,1)
+      RETURN 1
+--    END
+  END
+  ELSE
+  BEGIN
+
+    SELECT @sql = N'SELECT @rowCount = COUNT(*) FROM ' + @sourceschema + '.' + @sourcetable + ';'
+    EXEC sp_executesql @sql, N'@rowCount INT OUTPUT', @rowCount OUTPUT
+
+    IF @rowCount > 0 -- There is rows in the source table
     BEGIN
-      -- source and target in same schema -> rename source table
-      SELECT @sql = @sourceschema + '.' + @sourcetable
-      EXEC sp_rename @sql, @targettable;
-      UPDATE dbo.geometry_columns SET f_table_name = @targettable where UPPER(f_table_schema) = UPPER(@sourceschema) AND UPPER(f_table_name) = UPPER(@sourcetable);
+
+      --- Truncate target table
+      SELECT @sql = 'TRUNCATE TABLE ' + @targetschema + '.' + @targettable + ';'
+      EXEC (@sql);
+  
+      --- Copy rows from source to target
+      SELECT @sql = 'INSERT INTO ' + @targetschema + '.' + @targettable + ' SELECT * FROM ' + @sourceschema + '.' + @sourcetable + ';'
+      EXEC (@sql);
 
     END
     ELSE
     BEGIN
-      -- source and target in different schema -> raise error
-      RAISERROR ('Target table does not exist', 16,1)
+      RAISERROR ('Source table contains no rows, transfer aborted', 16,1)
       RETURN 1
     END
-  END
-  ELSE
-  BEGIN
-    --- Truncate target table
-    SELECT @sql = 'TRUNCATE TABLE ' + @targetschema + '.' + @targettable + ';'
-    EXEC (@sql);
-  
-    --- Copy rows from source to target
-    SELECT @sql = 'INSERT INTO ' + @targetschema + '.' + @targettable + ' SELECT * FROM ' + @sourceschema + '.' + @sourcetable + ';'
-    EXEC (@sql);
 
     --- Drop source table
-    SELECT @sql = 'DROP TABLE ' + @sourceschema + '.' + @sourcetable + ';'
-    EXEC (@sql);
-
-    DELETE FROM dbo.geometry_columns where UPPER(f_table_schema) = UPPER(@sourceschema) AND UPPER(f_table_name) = UPPER(@sourcetable);
+--    SELECT @sql = 'DROP TABLE ' + @sourceschema + '.' + @sourcetable + ';'
+--    EXEC (@sql);
+--    DELETE FROM dbo.geometry_columns where UPPER(f_table_schema) = UPPER(@sourceschema) AND UPPER(f_table_name) = UPPER(@sourcetable);
     
   END
 END
 GO
-
 ---
 --- Procedure to change an identity column to an ordinary integer primary key.
 ---
@@ -205,3 +221,7 @@ BEGIN
   DEALLOCATE TAB_CURSOR
 END
 GO
+
+
+
+
