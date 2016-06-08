@@ -1,18 +1,18 @@
 @echo off
 call "%~dp0ogr_environment.cmd"
 
-Rem eksempel på connectionstreng til Postgres
+Rem eksempel pÃ¥ connectionstreng til Postgres
 ::set "ogr_conn=host='f-gis03' port='5432' dbname='gis_test' user='postgres' password='mitpassword'"
 
 
 REM ============================================================================================
-REM Upload af SUT data fra Kortforsyningen (WFS) .. Erstat **login** og **password** med korrekte værdier
+REM Upload af SUT data fra Kortforsyningen (WFS) .. Erstat **login** og **password** med korrekte vÃ¦rdier
 REM ============================================================================================
-REM Bounding box skal indlejres i connection streng; ogr_bbox-værdi "tal1 tal2 tal3 tal4" ændres til "tal1,tal2,tal3,tal4" on-the-fly
+REM Bounding box skal indlejres i connection streng; ogr_bbox-vÃ¦rdi "tal1 tal2 tal3 tal4" Ã¦ndres til "tal1,tal2,tal3,tal4" on-the-fly
 set "ogr_inp=http://kortforsyningen.kms.dk/service?servicename=SutWFS_UTM&client=MapInfo&request=GetCapabilities&service=WFS&login=**login**&password=**password**&bbox=%ogr_bbox: =,%"
 set "ogr_conn=server=f-sql12;database=gis_test;trusted_connection=yes"
 
-REM SUT skal have BBOX som indlejret værdi i connection streng, derfor nulstilles ogr_bbox midlertidigt
+REM SUT skal have BBOX som indlejret vÃ¦rdi i connection streng, derfor nulstilles ogr_bbox midlertidigt
 set "xbox=%ogr_bbox%" & set "ogr_bbox="
 
 call "%ogr_command%" "%ogr_inp%" "Vej"       "%ogr_conn%" sut vej       *
@@ -61,7 +61,7 @@ call "%ogr_command%" "%ogr_inp%" "jupiter_anlaeg_ws"             "%ogr_conn%" ge
 
 
 REM ============================================================================================
-REM Upload af DAI data fra Miljøportalen (WFS)
+REM Upload af DAI data fra MiljÃ¸portalen (WFS)
 REM ============================================================================================
 set "ogr_inp=http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"
 set "ogr_conn=server=f-sql12;database=gis_test;trusted_connection=yes"
@@ -124,7 +124,7 @@ call "%ogr_command%" "%ogr_inp%" "dmp:SOE_BES_LINJER"           "%ogr_conn%" dai
 
 
 REM ============================================================================================
-REM Upload af Spildevandsdata, Miljøportal (WFS)
+REM Upload af Spildevandsdata, MiljÃ¸portal (WFS)
 REM ============================================================================================
 set "ogr_inp=http://arealinformation.miljoeportal.dk/gis/services/puls/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"
 set "ogr_conn=server=f-sql12;database=gis_test;trusted_connection=yes"
@@ -179,17 +179,17 @@ set "ogr_bbox=%xbox%" & set "xbox="
 
 
 REM ============================================================================================
-REM Upload af data fra os2geo - Rapport fra stedet (GeoJson http) Estat dummy@dummy.dk og **password** med rigtige værdier 
+REM Upload af data fra os2geo - Rapport fra stedet (GeoJson http) Estat dummy@dummy.dk og **password** med rigtige vÃ¦rdier 
 REM ============================================================================================
 REM NB!! Indeholder username snabel-a skal det angives som %%%%%%%%40 (Don't ask why !!)
-REM anoer bør erstattes af ny konto gis.....
+REM anoer bÃ¸r erstattes af ny konto gis.....
 set "ogr_inp=http://dummy%%%%%%%%40dummy.dk:**password**@geo.os2geo.dk/api/export"
 set "ogr_conn=server=f-sql12;database=gis_test;trusted_connection=yes"
 
 REM Fjern UTM32 Fr.Sund spatielt krieterie
 set "x_bbox=%ogr_bbox%" & set "ogr_bbox=" 
 
-REM sæt source srs til 4326 (longlat/wgs84), da data modtages i denne srs. ogr_epsgt forbliver den normale 25832; data bliver 
+REM sÃ¦t source srs til 4326 (longlat/wgs84), da data modtages i denne srs. ogr_epsgt forbliver den normale 25832; data bliver 
 REM herved konverteret til normal srs samtidigt med upload til databasen.
 set "x_epsgs=%ogr_epsgs%" & set "ogr_epsgs=4326"
 
@@ -207,7 +207,7 @@ call "%ogr_command%" "%ogr_inp%/db-ac3d5b62ebb8d7ce847c609711b736cf" "OGRGeoJSON
 call "%ogr_command%" "%ogr_inp%/db-ac3d5b62ebb8d7ce847c609711d79306" "OGRGeoJSON" "%ogr_conn%" rfs veje_belaegning           *
 call "%ogr_command%" "%ogr_inp%/db-ac3d5b62ebb8d7ce847c609711e9af59" "OGRGeoJSON" "%ogr_conn%" rfs beplantning               *
 
-REM nulstil SRS til alm. værdi
+REM nulstil SRS til alm. vÃ¦rdi
 set "ogr_epsgs=%x_epsgs%" & set "x_epsgs="
 
 REM Reset bbox parameter
@@ -215,7 +215,7 @@ set "ogr_bbox=%x_bbox%" & set "x_bbox="
 
 
 REM ==============================================================================================
-REM DAGI . Erstat **login** og **password** med korrekte værdier
+REM DAGI . Erstat **login** og **password** med korrekte vÃ¦rdier
 REM ==============================================================================================
 set "ogr_inp=http://kortforsyningen.kms.dk/service?servicename=dagi_gml2&client=QGIS&request=GetCapabilities&service=WFS&version=1.1.1&LOGIN=**login**&PASSWORD=**password**
 set "ogr_conn=server=f-sql12;database=gis_test;trusted_connection=yes"
@@ -233,14 +233,14 @@ REM ============================================================================
 REM Byggesager
 REM ==============================================================================================
 
-REM bør udkommenteres hvis data skal indlæses i Postgres: Genererer for store varchar felter
-REM Snak med Dansk Scanning om deres tumpede  WFS server opsætning
+REM bÃ¸r udkommenteres hvis data skal indlÃ¦ses i Postgres: Genererer for store varchar felter
+REM Snak med Dansk Scanning om deres tumpede  WFS server opsÃ¦tning
 set "ogr_inp=wfs:http://geoserver.danskscanning.dk/geoserver/ows?request=getcapabilities&version=1.0.0"
 set "ogr_conn=server=f-sql12;database=gis_test;trusted_connection=yes"
 
-REM bbox parameter overflødig
+REM bbox parameter overflÃ¸dig
 set "x_bbox=%ogr_bbox%" & set "ogr_bbox=" 
-REM For at få lange varchar med over 
+REM For at fÃ¥ lange varchar med over 
 set "ogr_xtra=-unsetFieldWidth"
 
 call "%ogr_command%" "%ogr_inp%" "bs:frederikssund_intern" "%ogr_conn%" byg frederikssund_intern *
@@ -266,8 +266,8 @@ REM ============================================================================
 set "ogr_conn=server=f-sql12;database=gis_test;trusted_connection=yes"
 
 
-REM Vandmiljø... 
-set "ogr_inp=W:\MapInfo\Temaer\Natur_Miljø\Vandmiljø\"
+REM VandmiljÃ¸... 
+set "ogr_inp=W:\MapInfo\Temaer\Natur_MiljÃ¸\VandmiljÃ¸\"
 call "%ogr_command%" "%ogr_inp%DVFI_2000.tab"       * "%ogr_conn%" natur dvfi_2000  *
 call "%ogr_command%" "%ogr_inp%DVFI_kort.tab"       * "%ogr_conn%" natur dvfi_kort  *
 
@@ -279,7 +279,7 @@ set "ogr_epsgs=%x_epsgs%" & set "x_epsgs="
 
 REM - genopdyrkningsret
 set "ogr_conn=server=f-sql12;database=gis_test;trusted_connection=yes"
-set "ogr_inp=W:\MapInfo\Temaer\Natur_Miljø\Natur_Miljø_data\"
+set "ogr_inp=W:\MapInfo\Temaer\Natur_MiljÃ¸\Natur_MiljÃ¸_data\"
 call "%ogr_command%" "%ogr_inp%Genopdyrkningsret.tab"     * "%ogr_conn%" natur genopdyrkningsret     *
 
 REM - Prognoser

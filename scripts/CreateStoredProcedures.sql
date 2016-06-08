@@ -79,9 +79,10 @@ BEGIN
     END
 
     --- Drop source table
---    SELECT @sql = 'DROP TABLE ' + @sourceschema + '.' + @sourcetable + ';'
---    EXEC (@sql);
---    DELETE FROM dbo.geometry_columns where UPPER(f_table_schema) = UPPER(@sourceschema) AND UPPER(f_table_name) = UPPER(@sourcetable);
+    SELECT @sql = 'DROP TABLE ' + @sourceschema + '.' + @sourcetable + ';'
+    EXEC (@sql);
+    DELETE FROM dbo.geometry_columns where UPPER(f_table_schema) = UPPER(@targetschema) AND UPPER(f_table_name) = UPPER(@targettable);
+    UPDATE dbo.geometry_columns SET f_table_schema = @targetschema, set f_table_name = @targettable where UPPER(f_table_schema) = UPPER(@sourceschema) AND UPPER(f_table_name) = UPPER(@sourcetable);
     
   END
 END
