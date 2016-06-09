@@ -181,12 +181,12 @@ set "ogr_bbox=%xbox%" & set "xbox="
 REM ============================================================================================
 REM Upload af data fra os2geo - Rapport fra stedet (GeoJson http) Estat dummy@dummy.dk og **password** med rigtige værdier 
 REM ============================================================================================
+
 REM NB!! Indeholder username snabel-a skal det angives som %%%%%%%%40 (Don't ask why !!)
-REM anoer bør erstattes af ny konto gis.....
 set "ogr_inp=http://dummy%%%%%%%%40dummy.dk:**password**@geo.os2geo.dk/api/export"
 set "ogr_conn=server=f-sql12;database=gis_test;trusted_connection=yes"
 
-REM Fjern UTM32 Fr.Sund spatielt krieterie
+REM Nultstil boundin box midlertidigt
 set "x_bbox=%ogr_bbox%" & set "ogr_bbox=" 
 
 REM sæt source srs til 4326 (longlat/wgs84), da data modtages i denne srs. ogr_epsgt forbliver den normale 25832; data bliver 
@@ -249,7 +249,6 @@ REM reset
 set "ogr_bbox=%x_bbox%" & set "x_bbox="
 set "ogr_xtra="
 
-
 REM ==============================================================================================
 REM Energinet
 REM ==============================================================================================
@@ -264,7 +263,6 @@ REM Upload af tab - filer
 REM ============================================================================================
 
 set "ogr_conn=server=f-sql12;database=gis_test;trusted_connection=yes"
-
 
 REM Vandmiljø... 
 set "ogr_inp=W:\MapInfo\Temaer\Natur_Miljø\Vandmiljø\"
@@ -291,7 +289,7 @@ set "x_load=%ogr_load%" & set "ogr_load=OVERWRITE"
 
 call "%ogr_command%" "%ogr_inp%omraader2.shp" * "%ogr_conn%" prognose prognoseomraader_2016     *
 
-REM Reset
+REM Reset load
 set "ogr_load=%x_load%" & set "x_load="
 
 echo.
