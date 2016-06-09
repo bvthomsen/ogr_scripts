@@ -81,12 +81,15 @@ BEGIN
     --- Drop source table
     SELECT @sql = 'DROP TABLE ' + @sourceschema + '.' + @sourcetable + ';'
     EXEC (@sql);
+
+    --- Update geometry_columns
     DELETE FROM dbo.geometry_columns where UPPER(f_table_schema) = UPPER(@targetschema) AND UPPER(f_table_name) = UPPER(@targettable);
-    UPDATE dbo.geometry_columns SET f_table_schema = @targetschema, set f_table_name = @targettable where UPPER(f_table_schema) = UPPER(@sourceschema) AND UPPER(f_table_name) = UPPER(@sourcetable);
+    UPDATE dbo.geometry_columns SET f_table_schema = @targetschema, f_table_name = @targettable where UPPER(f_table_schema) = UPPER(@sourceschema) AND UPPER(f_table_name) = UPPER(@sourcetable);
     
   END
 END
 GO
+
 ---
 --- Procedure to change an identity column to an ordinary integer primary key.
 ---
@@ -222,7 +225,3 @@ BEGIN
   DEALLOCATE TAB_CURSOR
 END
 GO
-
-
-
-
