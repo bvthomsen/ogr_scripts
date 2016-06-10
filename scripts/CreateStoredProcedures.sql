@@ -50,6 +50,13 @@ BEGIN
 --    ELSE
 --    BEGIN
       -- source and target in different schema -> raise error
+
+      --- Drop source table
+      SELECT @sql = 'DROP TABLE ' + @sourceschema + '.' + @sourcetable + ';'
+      EXEC (@sql);
+      --- Update geometry_columns
+      DELETE FROM dbo.geometry_columns where UPPER(f_table_schema) = UPPER(@sourceschema) AND UPPER(f_table_name) = UPPER(@sourcetable);
+
       RAISERROR ('Target table does not exist', 16,1)
       RETURN 1
 --    END
@@ -71,20 +78,25 @@ BEGIN
       SELECT @sql = 'INSERT INTO ' + @targetschema + '.' + @targettable + ' SELECT * FROM ' + @sourceschema + '.' + @sourcetable + ';'
       EXEC (@sql);
 
+      --- Drop source table
+      SELECT @sql = 'DROP TABLE ' + @sourceschema + '.' + @sourcetable + ';'
+      EXEC (@sql);
+      --- Update geometry_columns
+      DELETE FROM dbo.geometry_columns where UPPER(f_table_schema) = UPPER(@targetschema) AND UPPER(f_table_name) = UPPER(@targettable);
+      UPDATE dbo.geometry_columns SET f_table_schema = @targetschema, f_table_name = @targettable where UPPER(f_table_schema) = UPPER(@sourceschema) AND UPPER(f_table_name) = UPPER(@sourcetable);
+
     END
     ELSE
     BEGIN
+      --- Drop source table
+      SELECT @sql = 'DROP TABLE ' + @sourceschema + '.' + @sourcetable + ';'
+      EXEC (@sql);
+      --- Update geometry_columns
+      DELETE FROM dbo.geometry_columns where UPPER(f_table_schema) = UPPER(@sourceschema) AND UPPER(f_table_name) = UPPER(@sourcetable);
+
       RAISERROR ('Source table contains no rows, transfer aborted', 16,1)
       RETURN 1
     END
-
-    --- Drop source table
-    SELECT @sql = 'DROP TABLE ' + @sourceschema + '.' + @sourcetable + ';'
-    EXEC (@sql);
-
-    --- Update geometry_columns
-    DELETE FROM dbo.geometry_columns where UPPER(f_table_schema) = UPPER(@targetschema) AND UPPER(f_table_name) = UPPER(@targettable);
-    UPDATE dbo.geometry_columns SET f_table_schema = @targetschema, f_table_name = @targettable where UPPER(f_table_schema) = UPPER(@sourceschema) AND UPPER(f_table_name) = UPPER(@sourcetable);
     
   END
 END
