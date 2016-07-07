@@ -67,12 +67,12 @@ REM =====================================================
 set "xp8="
 set "xp9="
 set "xp10="
-if #%xp6%==#PKT  ( set "xp8=OGR_GEOMETRY='POINT'" & set "xp9=")
-if #%xp6%==#MPKT ( set "xp8=OGR_GEOMETRY='POINT' OR OGR_GEOMETRY='MULTIPOINT'" & set "xp9=-nlt PROMOTE_TO_MULTI")
-if #%xp6%==#LIN  ( set "xp8=OGR_GEOMETRY='LINESTRING'" & set "xp9=")
-if #%xp6%==#MLIN ( set "xp8=OGR_GEOMETRY='LINESTRING' OR OGR_GEOMETRY='MULTILINESTRING'" & set "xp9=-nlt PROMOTE_TO_MULTI")
-if #%xp6%==#POL  ( set "xp8=OGR_GEOMETRY='POLYGON'" & set "xp9=")
-if #%xp6%==#MPOL ( set "xp8=OGR_GEOMETRY='POLYGON' OR OGR_GEOMETRY='MULTIPOLYGON'" & set "xp9=-nlt PROMOTE_TO_MULTI" )
+if #%xp6%==#PKT  ( set "xp8=OGR_GEOMETRY='POINT'" & set "xp9=-nlt POINT")
+if #%xp6%==#MPKT ( set "xp8=OGR_GEOMETRY='POINT' OR OGR_GEOMETRY='MULTIPOINT'" & set "xp9=-nlt MULTIPOINT")
+if #%xp6%==#LIN  ( set "xp8=OGR_GEOMETRY='LINESTRING'" & set "xp9=-nlt LINESTRING")
+if #%xp6%==#MLIN ( set "xp8=OGR_GEOMETRY='LINESTRING' OR OGR_GEOMETRY='MULTILINESTRING'" & set "xp9=-nlt MULTILINESTRING")
+if #%xp6%==#POL  ( set "xp8=OGR_GEOMETRY='POLYGON'" & set "xp9=-nlt POLYGON")
+if #%xp6%==#MPOL ( set "xp8=OGR_GEOMETRY='POLYGON' OR OGR_GEOMETRY='MULTIPOLYGON'" & set "xp9=-nlt MULTIPOLYGON" )
 
 REM =====================================================
 REM Opsætning og behandling af semipermanente variable

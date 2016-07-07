@@ -17,7 +17,6 @@ call "Q:\Program Files\GDAL\release-1800-x64-gdal-1-11-4-mapserver-6-4-3\SDKShel
 
 REM GDAL v. 2.x fra netværk (Hentet fra http://gisinternals.com)
 ::call "Q:\Program Files\GDAL\release-1800-x64-gdal-2-1-0-mapserver-7-0-1\SDKShell.bat" setenv hideoci >NUL
-
 @echo %echostate%
 
 REM ============================================================================================
@@ -32,7 +31,7 @@ REM ============================================================================
 REM MS-SQLServer og GDAL v. 1.x
 set "ogr_command=%~dp0ogr_mssql.cmd"
 
-::REM MS-SQLServer og GDAL v. 2.x
+REM MS-SQLServer og GDAL v. 2.x
 ::set "ogr_command=%~dp0ogr2_mssql.cmd"
 
 REM =====================================================
@@ -129,5 +128,5 @@ REM =====================================================
 set "ogr_xtra="
 
 @echo ============================================================================================
-@echo Starttid: %date% %time% %ogr_command%
+@echo Starttid: %date% %time%
 @echo ============================================================================================

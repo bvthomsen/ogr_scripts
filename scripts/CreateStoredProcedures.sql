@@ -57,7 +57,7 @@ BEGIN
       --- Update geometry_columns
       DELETE FROM dbo.geometry_columns where UPPER(f_table_schema) = UPPER(@sourceschema) AND UPPER(f_table_name) = UPPER(@sourcetable);
 
-      RAISERROR ('Target table does not exist', 16,1)
+      RAISERROR ('Target table does not exist (source table dropped)', 16,1)
       RETURN 1
 --    END
   END
@@ -94,7 +94,7 @@ BEGIN
       --- Update geometry_columns
       DELETE FROM dbo.geometry_columns where UPPER(f_table_schema) = UPPER(@sourceschema) AND UPPER(f_table_name) = UPPER(@sourcetable);
 
-      RAISERROR ('Source table contains no rows, transfer aborted', 16,1)
+      RAISERROR ('Source table contains no rows, transfer aborted (source table dropped)', 16,1)
       RETURN 1
     END
     
@@ -237,3 +237,54 @@ BEGIN
   DEALLOCATE TAB_CURSOR
 END
 GO
+
+
+---
+--- Procedure to update the geoobject using a buffer 
+---
+CREATE PROCEDURE [dbo].[BufferTable] @targetschema varchar(100), @targettable varchar(100), @buffervalue float AS
+
+BEGIN
+
+  SET NOCOUNT ON 
+
+  DECLARE @object_id int
+  DECLARE @gcol nvarchar(256)
+  
+  DECLARE @sql nvarchar(999)
+  
+  --- Find objectid for source table
+  SELECT @object_id = NULL 
+  SELECT @object_id = A.OBJECT_ID FROM sys.objects A INNER JOIN sys.schemas B ON A.SCHEMA_ID = B.SCHEMA_ID 
+    WHERE TYPE = 'U' AND UPPER(B.NAME) = UPPER(@targetschema) AND UPPER(A.NAME) = UPPER(@targettable)
+
+  IF @object_id IS NULL
+
+  -- Target table not found, raise error
+  BEGIN 
+    RAISERROR ('Target table does not exist', 16,1)
+	RETURN 1
+  END
+
+  ELSE
+
+  -- Target table found, update with buffer value
+  BEGIN
+    
+    -- Find geometry column
+    SELECT @gcol = f_geometry_column FROM dbo.geometry_columns WHERE UPPER(f_table_schema) = UPPER(@targetschema) AND UPPER(f_table_name) = UPPER(@targettable);
+    
+    -- Update target table by buffering the geometry with the designated value
+    SELECT @sql = 'UPDATE ' + @targetschema + '.' + @targettable + ' SET '+ @gcol + '=' + @gcol + '.STBuffer(' + LTRIM(STR(@buffervalue, 25, 5)) + ');'
+    --PRINT (@sql); 
+    EXEC (@sql);
+  
+    -- Update appropiate geometry_columns row to polygon or multipolygon 
+    IF NOT EXISTS(SELECT * FROM  dbo.geometry_columns WHERE UPPER(f_table_schema) = UPPER(@targetschema) AND UPPER(f_table_name) = UPPER(@targettable) AND UPPER(geometry_type) LIKE 'MULTI%')
+      UPDATE dbo.geometry_columns SET geometry_type = 'Polygon' where UPPER(f_table_schema) = UPPER(@targetschema) AND UPPER(f_table_name) = UPPER(@targettable)
+    ELSE
+      UPDATE dbo.geometry_columns SET  geometry_type = 'MultiPolygon' where UPPER(f_table_schema) = UPPER(@targetschema) AND UPPER(f_table_name) = UPPER(@targettable)
+          
+  END
+
+END

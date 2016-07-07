@@ -1,0 +1,1304 @@
+============================================================================================
+Starttid: 14-06-2016 13:09:52,58 D:\git\ogr_scripts\scripts\ogr2_mssql.cmd
+============================================================================================
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://kortforsyningen.kms.dk/service?servicename=SutWFS_UTM&client=MapInfo&request=GetCapabilities&service=WFS&login=Kommune250&password=Dfghjkl10&bbox=678577,6178960,702291,6202870" / Lag... "Vej"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... sut / Tabel... vej / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:09:52,63
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS sut" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "sut.vej" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://kortforsyningen.kms.dk/service?servicename=SutWFS_UTM&client=MapInfo&request=GetCapabilities&service=WFS&login=Kommune250&password=Dfghjkl10&bbox=678577,6178960,702291,6202870"  "Vej" 
+ERROR 1: XML parsing of GML file failed : unclosed token at line 324805, column 4
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON sut.vej USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE sut.vej ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE sut.vej  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://kortforsyningen.kms.dk/service?servicename=SutWFS_UTM&client=MapInfo&request=GetCapabilities&service=WFS&login=Kommune250&password=Dfghjkl10&bbox=678577,6178960,702291,6202870" / Lag... "Skel"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... sut / Tabel... skel / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:12:30,96
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS sut" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "sut.skel" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://kortforsyningen.kms.dk/service?servicename=SutWFS_UTM&client=MapInfo&request=GetCapabilities&service=WFS&login=Kommune250&password=Dfghjkl10&bbox=678577,6178960,702291,6202870"  "Skel" 
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON sut.skel USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE sut.skel ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE sut.skel  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://kortforsyningen.kms.dk/service?servicename=SutWFS_UTM&client=MapInfo&request=GetCapabilities&service=WFS&login=Kommune250&password=Dfghjkl10&bbox=678577,6178960,702291,6202870" / Lag... "Skelpunkt"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... sut / Tabel... skelpunkt / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:29:39,63
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS sut" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "sut.skelpunkt" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://kortforsyningen.kms.dk/service?servicename=SutWFS_UTM&client=MapInfo&request=GetCapabilities&service=WFS&login=Kommune250&password=Dfghjkl10&bbox=678577,6178960,702291,6202870"  "Skelpunkt" 
+ERROR 1: XML parsing of GML file failed : unclosed token at line 382392, column 4
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON sut.skelpunkt USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE sut.skelpunkt ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE sut.skelpunkt  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://www.kulturarv.dk/geoserver/wfs?service=wfs&version=1.0.0&request=GetCapabilities" / Lag... "fbb:view_bygning_fredede"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... fbb / Tabel... frededebygninger / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:33:30,96
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS fbb" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "fbb.frededebygninger" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://www.kulturarv.dk/geoserver/wfs?service=wfs&version=1.0.0&request=GetCapabilities"  "fbb:view_bygning_fredede" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON fbb.frededebygninger USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE fbb.frededebygninger ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE fbb.frededebygninger  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://www.kulturarv.dk/geoserver/wfs?service=wfs&version=1.0.0&request=GetCapabilities" / Lag... "fbb:view_bygning_fredningstatus_hoej"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... fbb / Tabel... bygning_fredningstatus_hoej / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:33:50,42
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS fbb" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "fbb.bygning_fredningstatus_hoej" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://www.kulturarv.dk/geoserver/wfs?service=wfs&version=1.0.0&request=GetCapabilities"  "fbb:view_bygning_fredningstatus_hoej" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON fbb.bygning_fredningstatus_hoej USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE fbb.bygning_fredningstatus_hoej ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE fbb.bygning_fredningstatus_hoej  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://www.kulturarv.dk/ffpublic/wfs?service=wfs&version=1.0.0&request=GetCapabilities" / Lag... "public:fundogfortidsminder_punkt_ikkefredet"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... ffm / Tabel... fundogfortid_punkt_ikkefredet / Type... PKT 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:34:06,86
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS ffm" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "ffm.fundogfortid_punkt_ikkefredet" -a_srs EPSG:25832 -where "OGR_GEOMETRY='POINT'"   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://www.kulturarv.dk/ffpublic/wfs?service=wfs&version=1.0.0&request=GetCapabilities"  "public:fundogfortidsminder_punkt_ikkefredet" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON ffm.fundogfortid_punkt_ikkefredet USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE ffm.fundogfortid_punkt_ikkefredet ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE ffm.fundogfortid_punkt_ikkefredet  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://www.kulturarv.dk/ffpublic/wfs?service=wfs&version=1.0.0&request=GetCapabilities" / Lag... "public:fundogfortidsminder_punkt_fredet"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... ffm / Tabel... fundogfortid_punkt_fredet / Type... PKT 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:34:38,80
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS ffm" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "ffm.fundogfortid_punkt_fredet" -a_srs EPSG:25832 -where "OGR_GEOMETRY='POINT'"   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://www.kulturarv.dk/ffpublic/wfs?service=wfs&version=1.0.0&request=GetCapabilities"  "public:fundogfortidsminder_punkt_fredet" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON ffm.fundogfortid_punkt_fredet USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE ffm.fundogfortid_punkt_fredet ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE ffm.fundogfortid_punkt_fredet  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://www.kulturarv.dk/ffpublic/wfs?service=wfs&version=1.0.0&request=GetCapabilities" / Lag... "public:fundogfortidsminder_linie_alle"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... ffm / Tabel... fundogfortid_linie_alle / Type... MLIN 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:34:57,67
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS ffm" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "ffm.fundogfortid_linie_alle" -a_srs EPSG:25832 -where "OGR_GEOMETRY='LINESTRING' OR OGR_GEOMETRY='MULTILINESTRING'"  -nlt PROMOTE_TO_MULTI -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://www.kulturarv.dk/ffpublic/wfs?service=wfs&version=1.0.0&request=GetCapabilities"  "public:fundogfortidsminder_linie_alle" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON ffm.fundogfortid_linie_alle USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE ffm.fundogfortid_linie_alle ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE ffm.fundogfortid_linie_alle  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://www.kulturarv.dk/ffpublic/wfs?service=wfs&version=1.0.0&request=GetCapabilities" / Lag... "public:fundogfortidsminder_areal_ka"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... ffm / Tabel... fundogfortid_areal_ka / Type... MPOL 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:35:12,49
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS ffm" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "ffm.fundogfortid_areal_ka" -a_srs EPSG:25832 -where "OGR_GEOMETRY='POLYGON' OR OGR_GEOMETRY='MULTIPOLYGON'"  -nlt PROMOTE_TO_MULTI -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://www.kulturarv.dk/ffpublic/wfs?service=wfs&version=1.0.0&request=GetCapabilities"  "public:fundogfortidsminder_areal_ka" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON ffm.fundogfortid_areal_ka USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE ffm.fundogfortid_areal_ka ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE ffm.fundogfortid_areal_ka  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://www.kulturarv.dk/ffpublic/wfs?service=wfs&version=1.0.0&request=GetCapabilities" / Lag... "public:fundogfortidsminder_areal_beskyttelse"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... ffm / Tabel... fundogfortid_areal_beskyttelse / Type... MPOL 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:35:28,05
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS ffm" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "ffm.fundogfortid_areal_beskyttelse" -a_srs EPSG:25832 -where "OGR_GEOMETRY='POLYGON' OR OGR_GEOMETRY='MULTIPOLYGON'"  -nlt PROMOTE_TO_MULTI -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://www.kulturarv.dk/ffpublic/wfs?service=wfs&version=1.0.0&request=GetCapabilities"  "public:fundogfortidsminder_areal_beskyttelse" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON ffm.fundogfortid_areal_beskyttelse USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE ffm.fundogfortid_areal_beskyttelse ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE ffm.fundogfortid_areal_beskyttelse  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://www.kulturarv.dk/ffpublic/wfs?service=wfs&version=1.0.0&request=GetCapabilities" / Lag... "public:fundogfortidsminder_areal_alle"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... ffm / Tabel... fundogfortid_areal_alle / Type... MPOL 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:35:47,50
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS ffm" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "ffm.fundogfortid_areal_alle" -a_srs EPSG:25832 -where "OGR_GEOMETRY='POLYGON' OR OGR_GEOMETRY='MULTIPOLYGON'"  -nlt PROMOTE_TO_MULTI -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://www.kulturarv.dk/ffpublic/wfs?service=wfs&version=1.0.0&request=GetCapabilities"  "public:fundogfortidsminder_areal_alle" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON ffm.fundogfortid_areal_alle USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE ffm.fundogfortid_areal_alle ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE ffm.fundogfortid_areal_alle  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://www.kulturarv.dk/ffpublic/wfs?service=wfs&version=1.0.0&request=GetCapabilities" / Lag... "public:fundogfortidsminder_areal_adm"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... ffm / Tabel... fundogfortid_areal_adm / Type... MPOL 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:36:06,90
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS ffm" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "ffm.fundogfortid_areal_adm" -a_srs EPSG:25832 -where "OGR_GEOMETRY='POLYGON' OR OGR_GEOMETRY='MULTIPOLYGON'"  -nlt PROMOTE_TO_MULTI -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://www.kulturarv.dk/ffpublic/wfs?service=wfs&version=1.0.0&request=GetCapabilities"  "public:fundogfortidsminder_areal_adm" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON ffm.fundogfortid_areal_adm USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE ffm.fundogfortid_areal_adm ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE ffm.fundogfortid_areal_adm  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://data.geus.dk/geusmap/ows/25832.jsp?service=WFS&version=1.0.0&request=GetCapabilities&whoami=dummy@dummy.dk" / Lag... "jupiter_boringer_ws"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... geus / Tabel... jupiter_boringer_ws / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:36:22,08
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS geus" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "geus.jupiter_boringer_ws" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://data.geus.dk/geusmap/ows/25832.jsp?service=WFS&version=1.0.0&request=GetCapabilities&whoami=dummy@dummy.dk"  "jupiter_boringer_ws" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON geus.jupiter_boringer_ws USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE geus.jupiter_boringer_ws ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE geus.jupiter_boringer_ws  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://data.geus.dk/geusmap/ows/25832.jsp?service=WFS&version=1.0.0&request=GetCapabilities&whoami=dummy@dummy.dk" / Lag... "jupiter_bor_vandfors_almen_ws"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... geus / Tabel... jupiter_bor_vandfors_almen_ws / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:37:11,58
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS geus" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "geus.jupiter_bor_vandfors_almen_ws" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://data.geus.dk/geusmap/ows/25832.jsp?service=WFS&version=1.0.0&request=GetCapabilities&whoami=dummy@dummy.dk"  "jupiter_bor_vandfors_almen_ws" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON geus.jupiter_bor_vandfors_almen_ws USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE geus.jupiter_bor_vandfors_almen_ws ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE geus.jupiter_bor_vandfors_almen_ws  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://data.geus.dk/geusmap/ows/25832.jsp?service=WFS&version=1.0.0&request=GetCapabilities&whoami=dummy@dummy.dk" / Lag... "jupiter_bor_vandfors_andre_ws"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... geus / Tabel... jupiter_bor_vandfors_andre_ws / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:37:31,97
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS geus" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "geus.jupiter_bor_vandfors_andre_ws" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://data.geus.dk/geusmap/ows/25832.jsp?service=WFS&version=1.0.0&request=GetCapabilities&whoami=dummy@dummy.dk"  "jupiter_bor_vandfors_andre_ws" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON geus.jupiter_bor_vandfors_andre_ws USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE geus.jupiter_bor_vandfors_andre_ws ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE geus.jupiter_bor_vandfors_andre_ws  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://data.geus.dk/geusmap/ows/25832.jsp?service=WFS&version=1.0.0&request=GetCapabilities&whoami=dummy@dummy.dk" / Lag... "jupiter_anlaeg_ws"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... geus / Tabel... jupiter_anlaeg_ws / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:38:01,73
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS geus" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "geus.jupiter_anlaeg_ws" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://data.geus.dk/geusmap/ows/25832.jsp?service=WFS&version=1.0.0&request=GetCapabilities&whoami=dummy@dummy.dk"  "jupiter_anlaeg_ws" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON geus.jupiter_anlaeg_ws USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE geus.jupiter_anlaeg_ws ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE geus.jupiter_anlaeg_ws  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:AA_BES_LINJER"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... aa_bes_linjer / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:38:27,85
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.aa_bes_linjer" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:AA_BES_LINJER" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.aa_bes_linjer USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.aa_bes_linjer ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.aa_bes_linjer  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:ARTSFUND_FL"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... artsfund_fl / Type... MPOL 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:38:46,33
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.artsfund_fl" -a_srs EPSG:25832 -where "OGR_GEOMETRY='POLYGON' OR OGR_GEOMETRY='MULTIPOLYGON'"  -nlt PROMOTE_TO_MULTI -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:ARTSFUND_FL" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.artsfund_fl USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.artsfund_fl ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.artsfund_fl  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:ARTSFUND_LN"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... artsfund_ln / Type... MLIN 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:39:03,47
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.artsfund_ln" -a_srs EPSG:25832 -where "OGR_GEOMETRY='LINESTRING' OR OGR_GEOMETRY='MULTILINESTRING'"  -nlt PROMOTE_TO_MULTI -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:ARTSFUND_LN" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.artsfund_ln USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.artsfund_ln ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.artsfund_ln  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:ARTSFUND_PKT"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... artsfund_pkt / Type... PKT 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:39:19,74
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.artsfund_pkt" -a_srs EPSG:25832 -where "OGR_GEOMETRY='POINT'"   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:ARTSFUND_PKT" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.artsfund_pkt USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.artsfund_pkt ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.artsfund_pkt  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:BES_NAT_BUFFERZONER"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... bes_nat_bufferzoner / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:39:39,17
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.bes_nat_bufferzoner" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:BES_NAT_BUFFERZONER" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.bes_nat_bufferzoner USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.bes_nat_bufferzoner ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.bes_nat_bufferzoner  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:BES_NATURTYPER"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... bes_naturtyper / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:39:57,70
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.bes_naturtyper" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:BES_NATURTYPER" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.bes_naturtyper USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.bes_naturtyper ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.bes_naturtyper  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:BES_STEN_JORDDIGER"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... bes_sten_jorddiger / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:40:44,96
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.bes_sten_jorddiger" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:BES_STEN_JORDDIGER" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.bes_sten_jorddiger USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.bes_sten_jorddiger ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.bes_sten_jorddiger  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:BES_VANDLOEB"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... bes_vandloeb / Type... MLIN 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:41:12,66
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.bes_vandloeb" -a_srs EPSG:25832 -where "OGR_GEOMETRY='LINESTRING' OR OGR_GEOMETRY='MULTILINESTRING'"  -nlt PROMOTE_TO_MULTI -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:BES_VANDLOEB" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.bes_vandloeb USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.bes_vandloeb ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.bes_vandloeb  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:BESIGTIGELSE_FL"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... besigtigelse_fl / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:41:57,20
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.besigtigelse_fl" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:BESIGTIGELSE_FL" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.besigtigelse_fl USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.besigtigelse_fl ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.besigtigelse_fl  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:BESIGTIGELSE_FL_STAT"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... besigtigelse_fl_stat / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:42:43,10
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.besigtigelse_fl_stat" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:BESIGTIGELSE_FL_STAT" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.besigtigelse_fl_stat USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.besigtigelse_fl_stat ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.besigtigelse_fl_stat  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:BESIGTIGELSE_LN"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... besigtigelse_ln / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:43:04,39
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.besigtigelse_ln" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:BESIGTIGELSE_LN" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.besigtigelse_ln USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.besigtigelse_ln ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.besigtigelse_ln  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:BESIGTIGELSE_PKT"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... besigtigelse_pkt / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:43:20,77
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.besigtigelse_pkt" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:BESIGTIGELSE_PKT" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.besigtigelse_pkt USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.besigtigelse_pkt ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.besigtigelse_pkt  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:Bnbo"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... bnbo / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:43:41,79
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.bnbo" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:Bnbo" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.bnbo USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.bnbo ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.bnbo  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:DEVANO_DOK_FELTER"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... devano_dok_felter / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:43:58,71
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.devano_dok_felter" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:DEVANO_DOK_FELTER" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.devano_dok_felter USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.devano_dok_felter ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.devano_dok_felter  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:DEVANO_KORTLAEGNING"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... devano_kortlaegning / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:44:19,21
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.devano_kortlaegning" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:DEVANO_KORTLAEGNING" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.devano_kortlaegning USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.devano_kortlaegning ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.devano_kortlaegning  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:DKJORD_NUANCERING"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... dkjord_nuancering / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:44:42,18
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.dkjord_nuancering" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:DKJORD_NUANCERING" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.dkjord_nuancering USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.dkjord_nuancering ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.dkjord_nuancering  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:Dkjord_projektfaser"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... dkjord_projektfaser / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:44:59,37
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.dkjord_projektfaser" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:Dkjord_projektfaser" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.dkjord_projektfaser USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.dkjord_projektfaser ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.dkjord_projektfaser  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:Dkjord_uek"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... dkjord_uek / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:45:32,93
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.dkjord_uek" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:Dkjord_uek" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.dkjord_uek USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.dkjord_uek ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.dkjord_uek  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:Dkjord_ufk"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... dkjord_ufk / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:46:03,90
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.dkjord_ufk" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:Dkjord_ufk" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.dkjord_ufk USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.dkjord_ufk ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.dkjord_ufk  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:DKJORD_V1"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... dkjord_v1 / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:46:33,11
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.dkjord_v1" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:DKJORD_V1" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.dkjord_v1 USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.dkjord_v1 ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.dkjord_v1  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:DKJORD_V2"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... dkjord_v2 / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:46:50,25
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.dkjord_v2" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:DKJORD_V2" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.dkjord_v2 USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.dkjord_v2 ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.dkjord_v2  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:DRIKKEVANDS_INTER"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... drikkevands_inter / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:47:09,73
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.drikkevands_inter" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:DRIKKEVANDS_INTER" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.drikkevands_inter USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.drikkevands_inter ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.drikkevands_inter  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:FOELS_INDV_OMR"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... foels_indv_omr / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:47:27,22
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.foels_indv_omr" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:FOELS_INDV_OMR" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.foels_indv_omr USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.foels_indv_omr ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.foels_indv_omr  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:FOSFORKLASSER"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... fosforklasser / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:47:44,12
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.fosforklasser" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:FOSFORKLASSER" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.fosforklasser USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.fosforklasser ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.fosforklasser  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:FREDEDE_OMR"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... fredede_omr / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:48:07,29
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.fredede_omr" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:FREDEDE_OMR" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.fredede_omr USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.fredede_omr ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.fredede_omr  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:FREDEDE_OMR_FORSLAG"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... fredede_omr_forslag / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:48:24,81
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.fredede_omr_forslag" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:FREDEDE_OMR_FORSLAG" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.fredede_omr_forslag USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.fredede_omr_forslag ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.fredede_omr_forslag  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:FUGLE_BES_OMR"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... fugle_bes_omr / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:48:40,71
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.fugle_bes_omr" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:FUGLE_BES_OMR" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.fugle_bes_omr USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.fugle_bes_omr ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.fugle_bes_omr  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:FUGLEOVERVAAGNING_FL"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... fugleovervaagning_fl / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:48:57,30
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.fugleovervaagning_fl" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:FUGLEOVERVAAGNING_FL" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.fugleovervaagning_fl USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.fugleovervaagning_fl ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.fugleovervaagning_fl  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:FUGLEOVERVAAGNING_LN"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... fugleovervaagning_ln / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:49:13,88
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.fugleovervaagning_ln" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:FUGLEOVERVAAGNING_LN" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.fugleovervaagning_ln USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.fugleovervaagning_ln ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.fugleovervaagning_ln  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:FUGLEOVERVAAGNING_PKT"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... fugleovervaagning_pkt / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:49:31,14
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.fugleovervaagning_pkt" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:FUGLEOVERVAAGNING_PKT" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.fugleovervaagning_pkt USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.fugleovervaagning_pkt ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.fugleovervaagning_pkt  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:HABITAT_OMR"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... habitat_omr / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:49:48,90
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.habitat_omr" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:HABITAT_OMR" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.habitat_omr USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.habitat_omr ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.habitat_omr  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:HABITATNATUR"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... habitatnatur / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:50:04,76
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.habitatnatur" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:HABITATNATUR" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.habitatnatur USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.habitatnatur ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.habitatnatur  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:HNV"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... hnv / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:50:24,82
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.hnv" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:HNV" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.hnv USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.hnv ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.hnv  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:INDSATSOMR"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... indsatsomr / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:56:45,41
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.indsatsomr" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:INDSATSOMR" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.indsatsomr USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.indsatsomr ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.indsatsomr  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:Indv_opland_u_osd"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... indv_opland_u_osd / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:57:02,05
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.indv_opland_u_osd" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:Indv_opland_u_osd" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.indv_opland_u_osd USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.indv_opland_u_osd ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.indv_opland_u_osd  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:KATEGORI3_NATUR"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... kategori3_natur / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:57:18,88
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.kategori3_natur" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:KATEGORI3_NATUR" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.kategori3_natur USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.kategori3_natur ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.kategori3_natur  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:KIRKEBYGGELINJER"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... kirkebyggelinjer / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:57:38,26
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.kirkebyggelinjer" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:KIRKEBYGGELINJER" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.kirkebyggelinjer USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.kirkebyggelinjer ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.kirkebyggelinjer  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:KVAELSTOF_RED_POT"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... kvaelstof_red_pot / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:57:54,02
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.kvaelstof_red_pot" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:KVAELSTOF_RED_POT" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.kvaelstof_red_pot USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.kvaelstof_red_pot ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.kvaelstof_red_pot  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:KYSTNAERHEDSZONE"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... kystnaerhedszone / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:58:11,17
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.kystnaerhedszone" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:KYSTNAERHEDSZONE" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.kystnaerhedszone USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.kystnaerhedszone ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.kystnaerhedszone  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:NATUR_VILDT_RESERVAT"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... natur_vildt_reservat / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:58:27,47
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.natur_vildt_reservat" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:NATUR_VILDT_RESERVAT" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.natur_vildt_reservat USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.natur_vildt_reservat ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.natur_vildt_reservat  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:NATURA2000_OPL"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... natura2000_opl / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:58:43,33
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.natura2000_opl" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:NATURA2000_OPL" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.natura2000_opl USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.natura2000_opl ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.natura2000_opl  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:Naturregistreringer_FL"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... naturregistreringer_fl / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:59:01,26
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.naturregistreringer_fl" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:Naturregistreringer_FL" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.naturregistreringer_fl USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.naturregistreringer_fl ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.naturregistreringer_fl  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:Naturregistreringer_PKT"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... naturregistreringer_pkt / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:59:17,34
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.naturregistreringer_pkt" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:Naturregistreringer_PKT" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.naturregistreringer_pkt USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.naturregistreringer_pkt ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.naturregistreringer_pkt  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:NITRATKLASSER"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... nitratklasser / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:59:32,96
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.nitratklasser" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:NITRATKLASSER" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.nitratklasser USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.nitratklasser ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.nitratklasser  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:NOVANA_ARTSFUND_FL"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... novana_artsfund_fl / Type... MPOL 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 13:59:49,55
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.novana_artsfund_fl" -a_srs EPSG:25832 -where "OGR_GEOMETRY='POLYGON' OR OGR_GEOMETRY='MULTIPOLYGON'"  -nlt PROMOTE_TO_MULTI -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:NOVANA_ARTSFUND_FL" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.novana_artsfund_fl USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.novana_artsfund_fl ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.novana_artsfund_fl  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:NOVANA_ARTSFUND_LN"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... novana_artsfund_ln / Type... MLIN 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 14:00:07,57
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.novana_artsfund_ln" -a_srs EPSG:25832 -where "OGR_GEOMETRY='LINESTRING' OR OGR_GEOMETRY='MULTILINESTRING'"  -nlt PROMOTE_TO_MULTI -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:NOVANA_ARTSFUND_LN" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.novana_artsfund_ln USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.novana_artsfund_ln ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.novana_artsfund_ln  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:NOVANA_ARTSFUND_PKT"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... novana_artsfund_pkt / Type... PKT 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 14:00:23,99
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.novana_artsfund_pkt" -a_srs EPSG:25832 -where "OGR_GEOMETRY='POINT'"   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:NOVANA_ARTSFUND_PKT" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.novana_artsfund_pkt USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.novana_artsfund_pkt ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.novana_artsfund_pkt  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:NOVANA_PROEVEFELTER"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... novana_proevefelter / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 14:00:49,09
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.novana_proevefelter" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:NOVANA_PROEVEFELTER" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.novana_proevefelter USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.novana_proevefelter ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.novana_proevefelter  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:NOVANA_STATIONER"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... novana_stationer / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 14:01:16,36
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.novana_stationer" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:NOVANA_STATIONER" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.novana_stationer USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.novana_stationer ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.novana_stationer  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:OMR_KLASSIFICERING"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... omr_klassificering / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 14:01:33,18
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.omr_klassificering" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:OMR_KLASSIFICERING" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.omr_klassificering USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.omr_klassificering ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.omr_klassificering  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:PAABUD_JFL"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... paabud_jfl / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 14:01:49,62
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.paabud_jfl" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:PAABUD_JFL" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.paabud_jfl USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.paabud_jfl ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.paabud_jfl  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:RAASTOFOMR"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... raastofomr / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 14:02:05,23
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.raastofomr" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:RAASTOFOMR" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.raastofomr USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.raastofomr ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.raastofomr  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:RAMSAR_OMR"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... ramsar_omr / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 14:02:21,69
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.ramsar_omr" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:RAMSAR_OMR" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.ramsar_omr USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.ramsar_omr ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.ramsar_omr  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:SKOVBYGGELINJER"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... skovbyggelinjer / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 14:02:37,12
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.skovbyggelinjer" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:SKOVBYGGELINJER" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.skovbyggelinjer USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.skovbyggelinjer ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.skovbyggelinjer  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:SOE_BES_LINJER"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... dai / Tabel... soe_bes_linjer / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 14:02:53,20
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS dai" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "dai.soe_bes_linjer" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/public/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:SOE_BES_LINJER" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON dai.soe_bes_linjer USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE dai.soe_bes_linjer ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE dai.soe_bes_linjer  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/puls/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:AKVAKULTUR_MAAL"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... miljo / Tabel... akvakultur_maal / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 14:03:09,20
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS miljo" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "miljo.akvakultur_maal" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/puls/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:AKVAKULTUR_MAAL" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON miljo.akvakultur_maal USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE miljo.akvakultur_maal ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE miljo.akvakultur_maal  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/puls/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:AKVAKULTUR_UDL"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... miljo / Tabel... akvakultur_udl / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 14:03:25,12
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS miljo" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "miljo.akvakultur_udl" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/puls/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:AKVAKULTUR_UDL" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON miljo.akvakultur_udl USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE miljo.akvakultur_udl ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE miljo.akvakultur_udl  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/puls/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:REGNBET_UDLEDNING"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... miljo / Tabel... regnbet_udledning / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 14:03:44,11
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS miljo" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "miljo.regnbet_udledning" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/puls/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:REGNBET_UDLEDNING" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON miljo.regnbet_udledning USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE miljo.regnbet_udledning ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE miljo.regnbet_udledning  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/puls/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:REGNBET_UDLEDNING_MAAL"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... miljo / Tabel... regnbet_udledning_maal / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 14:04:11,44
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS miljo" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "miljo.regnbet_udledning_maal" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/puls/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:REGNBET_UDLEDNING_MAAL" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON miljo.regnbet_udledning_maal USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE miljo.regnbet_udledning_maal ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE miljo.regnbet_udledning_maal  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/puls/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:RENSEANLAEG"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... miljo / Tabel... renseanlaeg / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 14:04:27,10
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS miljo" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "miljo.renseanlaeg" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/puls/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:RENSEANLAEG" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON miljo.renseanlaeg USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE miljo.renseanlaeg ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE miljo.renseanlaeg  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "http://arealinformation.miljoeportal.dk/gis/services/puls/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities" / Lag... "dmp:RENSEANLAEG_MAAL"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... miljo / Tabel... renseanlaeg_maal / Type... * 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 14:04:49,23
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS miljo" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "miljo.renseanlaeg_maal" -a_srs EPSG:25832   -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "http://arealinformation.miljoeportal.dk/gis/services/puls/MapServer/WFSServer?SERVICE=WFS&VERSION=1.0.0&REQUEST=GetCapabilities"  "dmp:RENSEANLAEG_MAAL" -spat 678577 6178960 702291 6202870
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON miljo.renseanlaeg_maal USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE miljo.renseanlaeg_maal ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE miljo.renseanlaeg_maal  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "WFS:http://geoservice.plansystem.dk/wfs?version=1.0.0" / Lag... "pdk:theme_pdk_lokalplan_vedtaget_v"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... pdk / Tabel... lokalplan_vedtaget / Type... MPOL 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 14:05:06,32
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS pdk" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "pdk.lokalplan_vedtaget" -a_srs EPSG:25832 -where "(OGR_GEOMETRY='POLYGON' OR OGR_GEOMETRY='MULTIPOLYGON') AND (komnr=250)"  -nlt PROMOTE_TO_MULTI -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "WFS:http://geoservice.plansystem.dk/wfs?version=1.0.0"  "pdk:theme_pdk_lokalplan_vedtaget_v" 
+ERROR 1: HTTP error code : 404
+ERROR 1: Error returned by server : HTTP error code : 404 (0)
+Warning 1: Renaming field 'oid' to 'oid_' to avoid conflict with internal oid field.
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON pdk.lokalplan_vedtaget USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE pdk.lokalplan_vedtaget ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE pdk.lokalplan_vedtaget  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "WFS:http://geoservice.plansystem.dk/wfs?version=1.0.0" / Lag... "pdk:theme_pdk_lokalplan_forslag_v"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... pdk / Tabel... lokalplan_forslag / Type... MPOL 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 14:05:39,35
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS pdk" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "pdk.lokalplan_forslag" -a_srs EPSG:25832 -where "(OGR_GEOMETRY='POLYGON' OR OGR_GEOMETRY='MULTIPOLYGON') AND (komnr=250)"  -nlt PROMOTE_TO_MULTI -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "WFS:http://geoservice.plansystem.dk/wfs?version=1.0.0"  "pdk:theme_pdk_lokalplan_forslag_v" 
+ERROR 1: HTTP error code : 404
+ERROR 1: Error returned by server : HTTP error code : 404 (0)
+Warning 1: Renaming field 'oid' to 'oid_' to avoid conflict with internal oid field.
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON pdk.lokalplan_forslag USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE pdk.lokalplan_forslag ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE pdk.lokalplan_forslag  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "WFS:http://geoservice.plansystem.dk/wfs?version=1.0.0" / Lag... "pdk:theme_pdk_temalokalplan_vedtaget_v"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... pdk / Tabel... temalokalplan_vedtaget / Type... MPOL 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 14:05:55,37
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS pdk" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "pdk.temalokalplan_vedtaget" -a_srs EPSG:25832 -where "(OGR_GEOMETRY='POLYGON' OR OGR_GEOMETRY='MULTIPOLYGON') AND (komnr=250)"  -nlt PROMOTE_TO_MULTI -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "WFS:http://geoservice.plansystem.dk/wfs?version=1.0.0"  "pdk:theme_pdk_temalokalplan_vedtaget_v" 
+ERROR 1: HTTP error code : 404
+ERROR 1: Error returned by server : HTTP error code : 404 (0)
+Warning 1: Renaming field 'oid' to 'oid_' to avoid conflict with internal oid field.
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON pdk.temalokalplan_vedtaget USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE pdk.temalokalplan_vedtaget ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE pdk.temalokalplan_vedtaget  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "WFS:http://geoservice.plansystem.dk/wfs?version=1.0.0" / Lag... "pdk:theme_pdk_temalokalplan_forslag_v"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... pdk / Tabel... temalokalplan_forslag / Type... MPOL 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 14:06:10,73
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS pdk" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "pdk.temalokalplan_forslag" -a_srs EPSG:25832 -where "(OGR_GEOMETRY='POLYGON' OR OGR_GEOMETRY='MULTIPOLYGON') AND (komnr=250)"  -nlt PROMOTE_TO_MULTI -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "WFS:http://geoservice.plansystem.dk/wfs?version=1.0.0"  "pdk:theme_pdk_temalokalplan_forslag_v" 
+ERROR 1: HTTP error code : 404
+ERROR 1: Error returned by server : HTTP error code : 404 (0)
+Warning 1: Renaming field 'oid' to 'oid_' to avoid conflict with internal oid field.
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON pdk.temalokalplan_forslag USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE pdk.temalokalplan_forslag ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE pdk.temalokalplan_forslag  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "WFS:http://geoservice.plansystem.dk/wfs?version=1.0.0" / Lag... "pdk:theme_pdk_kommuneplanramme_vedtaget_v"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... pdk / Tabel... kommuneplanramme_vedtaget / Type... MPOL 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 14:06:26,22
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS pdk" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "pdk.kommuneplanramme_vedtaget" -a_srs EPSG:25832 -where "(OGR_GEOMETRY='POLYGON' OR OGR_GEOMETRY='MULTIPOLYGON') AND (komnr=250)"  -nlt PROMOTE_TO_MULTI -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "WFS:http://geoservice.plansystem.dk/wfs?version=1.0.0"  "pdk:theme_pdk_kommuneplanramme_vedtaget_v" 
+ERROR 1: HTTP error code : 404
+ERROR 1: Error returned by server : HTTP error code : 404 (0)
+Warning 1: Renaming field 'oid' to 'oid_' to avoid conflict with internal oid field.
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON pdk.kommuneplanramme_vedtaget USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE pdk.kommuneplanramme_vedtaget ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE pdk.kommuneplanramme_vedtaget  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "WFS:http://geoservice.plansystem.dk/wfs?version=1.0.0" / Lag... "pdk:theme_pdk_kommuneplanramme_forslag_v"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... pdk / Tabel... kommuneplanramme_forslag / Type... MPOL 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 14:07:09,15
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS pdk" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "pdk.kommuneplanramme_forslag" -a_srs EPSG:25832 -where "(OGR_GEOMETRY='POLYGON' OR OGR_GEOMETRY='MULTIPOLYGON') AND (komnr=250)"  -nlt PROMOTE_TO_MULTI -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "WFS:http://geoservice.plansystem.dk/wfs?version=1.0.0"  "pdk:theme_pdk_kommuneplanramme_forslag_v" 
+ERROR 1: HTTP error code : 404
+ERROR 1: Error returned by server : HTTP error code : 404 (0)
+Warning 1: Renaming field 'oid' to 'oid_' to avoid conflict with internal oid field.
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON pdk.kommuneplanramme_forslag USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE pdk.kommuneplanramme_forslag ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE pdk.kommuneplanramme_forslag  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "WFS:http://geoservice.plansystem.dk/wfs?version=1.0.0" / Lag... "pdk:theme_pdk_kommuneplantillaeg_vedtaget_v"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... pdk / Tabel... kommuneplantillaeg_vedtaget / Type... MPOL 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 14:07:28,85
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS pdk" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "pdk.kommuneplantillaeg_vedtaget" -a_srs EPSG:25832 -where "(OGR_GEOMETRY='POLYGON' OR OGR_GEOMETRY='MULTIPOLYGON') AND (komnr=250)"  -nlt PROMOTE_TO_MULTI -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "WFS:http://geoservice.plansystem.dk/wfs?version=1.0.0"  "pdk:theme_pdk_kommuneplantillaeg_vedtaget_v" 
+ERROR 1: HTTP error code : 404
+ERROR 1: Error returned by server : HTTP error code : 404 (0)
+Warning 1: Renaming field 'oid' to 'oid_' to avoid conflict with internal oid field.
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON pdk.kommuneplantillaeg_vedtaget USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE pdk.kommuneplantillaeg_vedtaget ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE pdk.kommuneplantillaeg_vedtaget  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "WFS:http://geoservice.plansystem.dk/wfs?version=1.0.0" / Lag... "pdk:theme_pdk_kommuneplantillaeg_forslag_v"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... pdk / Tabel... kommuneplantillaeg_forslag / Type... MPOL 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 14:07:46,97
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS pdk" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "pdk.kommuneplantillaeg_forslag" -a_srs EPSG:25832 -where "(OGR_GEOMETRY='POLYGON' OR OGR_GEOMETRY='MULTIPOLYGON') AND (komnr=250)"  -nlt PROMOTE_TO_MULTI -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "WFS:http://geoservice.plansystem.dk/wfs?version=1.0.0"  "pdk:theme_pdk_kommuneplantillaeg_forslag_v" 
+ERROR 1: HTTP error code : 404
+ERROR 1: Error returned by server : HTTP error code : 404 (0)
+Warning 1: Renaming field 'oid' to 'oid_' to avoid conflict with internal oid field.
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON pdk.kommuneplantillaeg_forslag USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE pdk.kommuneplantillaeg_forslag ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE pdk.kommuneplantillaeg_forslag  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "WFS:http://geoservice.plansystem.dk/wfs?version=1.0.0" / Lag... "pdk:theme_pdk_byzonesommerhusomraade_vedtaget_v"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... pdk / Tabel... byzonesommerhusomraade_vedtaget / Type... MPOL 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 14:08:03,50
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS pdk" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "pdk.byzonesommerhusomraade_vedtaget" -a_srs EPSG:25832 -where "(OGR_GEOMETRY='POLYGON' OR OGR_GEOMETRY='MULTIPOLYGON') AND (komnr=250)"  -nlt PROMOTE_TO_MULTI -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "WFS:http://geoservice.plansystem.dk/wfs?version=1.0.0"  "pdk:theme_pdk_byzonesommerhusomraade_vedtaget_v" 
+ERROR 1: HTTP error code : 404
+ERROR 1: Error returned by server : HTTP error code : 404 (0)
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON pdk.byzonesommerhusomraade_vedtaget USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE pdk.byzonesommerhusomraade_vedtaget ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE pdk.byzonesommerhusomraade_vedtaget  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "WFS:http://geoservice.plansystem.dk/wfs?version=1.0.0" / Lag... "pdk:theme_pdk_byzonesommerhusomraade_forslag_v"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... pdk / Tabel... byzonesommerhusomraade_forslag / Type... MPOL 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 14:08:26,04
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS pdk" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "pdk.byzonesommerhusomraade_forslag" -a_srs EPSG:25832 -where "(OGR_GEOMETRY='POLYGON' OR OGR_GEOMETRY='MULTIPOLYGON') AND (komnr=250)"  -nlt PROMOTE_TO_MULTI -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "WFS:http://geoservice.plansystem.dk/wfs?version=1.0.0"  "pdk:theme_pdk_byzonesommerhusomraade_forslag_v" 
+ERROR 1: HTTP error code : 404
+ERROR 1: Error returned by server : HTTP error code : 404 (0)
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON pdk.byzonesommerhusomraade_forslag USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE pdk.byzonesommerhusomraade_forslag ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE pdk.byzonesommerhusomraade_forslag  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "WFS:http://geoservice.plansystem.dk/wfs?version=1.0.0" / Lag... "pdk:theme_pdk_zonekort_v"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... pdk / Tabel... zonekort_v / Type... MPOL 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 14:08:40,60
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS pdk" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "pdk.zonekort_v" -a_srs EPSG:25832 -where "(OGR_GEOMETRY='POLYGON' OR OGR_GEOMETRY='MULTIPOLYGON') AND (komnr=250)"  -nlt PROMOTE_TO_MULTI -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "WFS:http://geoservice.plansystem.dk/wfs?version=1.0.0"  "pdk:theme_pdk_zonekort_v" 
+ERROR 1: HTTP error code : 404
+ERROR 1: Error returned by server : HTTP error code : 404 (0)
+Warning 1: Renaming field 'oid' to 'oid_' to avoid conflict with internal oid field.
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON pdk.zonekort_v USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE pdk.zonekort_v ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE pdk.zonekort_v  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "WFS:http://geoservice.plansystem.dk/wfs?version=1.0.0" / Lag... "pdk:theme_pdk_tilslutningspligtomraade_vedtaget_v"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... pdk / Tabel... tilslutningspligtomraade_vedtaget / Type... MPOL 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 14:09:00,28
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS pdk" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "pdk.tilslutningspligtomraade_vedtaget" -a_srs EPSG:25832 -where "(OGR_GEOMETRY='POLYGON' OR OGR_GEOMETRY='MULTIPOLYGON') AND (cvr_kode='29189129')"  -nlt PROMOTE_TO_MULTI -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "WFS:http://geoservice.plansystem.dk/wfs?version=1.0.0"  "pdk:theme_pdk_tilslutningspligtomraade_vedtaget_v" 
+ERROR 1: HTTP error code : 404
+ERROR 1: Error returned by server : HTTP error code : 404 (0)
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON pdk.tilslutningspligtomraade_vedtaget USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE pdk.tilslutningspligtomraade_vedtaget ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE pdk.tilslutningspligtomraade_vedtaget  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "WFS:http://geoservice.plansystem.dk/wfs?version=1.0.0" / Lag... "pdk:theme_pdk_forsyningomraade_vedtaget_v"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... pdk / Tabel... forsyningomraade_vedtaget / Type... MPOL 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 14:09:26,54
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS pdk" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "pdk.forsyningomraade_vedtaget" -a_srs EPSG:25832 -where "(OGR_GEOMETRY='POLYGON' OR OGR_GEOMETRY='MULTIPOLYGON') AND (cvr_kode='29189129')"  -nlt PROMOTE_TO_MULTI -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "WFS:http://geoservice.plansystem.dk/wfs?version=1.0.0"  "pdk:theme_pdk_forsyningomraade_vedtaget_v" 
+ERROR 1: HTTP error code : 404
+ERROR 1: Error returned by server : HTTP error code : 404 (0)
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON pdk.forsyningomraade_vedtaget USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE pdk.forsyningomraade_vedtaget ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE pdk.forsyningomraade_vedtaget  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "WFS:http://geoservice.plansystem.dk/wfs?version=1.0.0" / Lag... "pdk:theme_pdk_kloakopland_vedtaget_v"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... pdk / Tabel... kloakopland_vedtaget / Type... MPOL 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 14:09:49,91
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS pdk" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "pdk.kloakopland_vedtaget" -a_srs EPSG:25832 -where "(OGR_GEOMETRY='POLYGON' OR OGR_GEOMETRY='MULTIPOLYGON') AND (cvr_kode='29189129')"  -nlt PROMOTE_TO_MULTI -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "WFS:http://geoservice.plansystem.dk/wfs?version=1.0.0"  "pdk:theme_pdk_kloakopland_vedtaget_v" 
+ERROR 1: HTTP error code : 404
+ERROR 1: Error returned by server : HTTP error code : 404 (0)
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON pdk.kloakopland_vedtaget USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE pdk.kloakopland_vedtaget ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE pdk.kloakopland_vedtaget  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "WFS:http://geoservice.plansystem.dk/wfs?version=1.0.0" / Lag... "pdk:theme_pdk_kloakopland_forslag_v"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... pdk / Tabel... kloakopland_forslag / Type... MPOL 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 14:10:24,88
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS pdk" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "pdk.kloakopland_forslag" -a_srs EPSG:25832 -where "(OGR_GEOMETRY='POLYGON' OR OGR_GEOMETRY='MULTIPOLYGON') AND (cvr_kode='29189129')"  -nlt PROMOTE_TO_MULTI -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "WFS:http://geoservice.plansystem.dk/wfs?version=1.0.0"  "pdk:theme_pdk_kloakopland_forslag_v" 
+ERROR 1: HTTP error code : 404
+ERROR 1: Error returned by server : HTTP error code : 404 (0)
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON pdk.kloakopland_forslag USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE pdk.kloakopland_forslag ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE pdk.kloakopland_forslag  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "WFS:http://geoservice.plansystem.dk/wfs?version=1.0.0" / Lag... "pdk:theme_pdk_kloakopland_aflyst_v"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... pdk / Tabel... kloakopland_aflyst / Type... MPOL 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 14:10:43,34
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS pdk" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "pdk.kloakopland_aflyst" -a_srs EPSG:25832 -where "(OGR_GEOMETRY='POLYGON' OR OGR_GEOMETRY='MULTIPOLYGON') AND (cvr_kode='29189129')"  -nlt PROMOTE_TO_MULTI -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "WFS:http://geoservice.plansystem.dk/wfs?version=1.0.0"  "pdk:theme_pdk_kloakopland_aflyst_v" 
+ERROR 1: HTTP error code : 404
+ERROR 1: Error returned by server : HTTP error code : 404 (0)
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON pdk.kloakopland_aflyst USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "ALTER TABLE pdk.kloakopland_aflyst ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogrinfo -q -sql "UPDATE pdk.kloakopland_aflyst  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+
+=== Inddataparametre =======================================================================
+Kilde..... "WFS:http://geoservice.plansystem.dk/wfs?version=1.0.0" / Lag... "pdk:theme_pdk_forsyningomraade_forslag_v"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... pdk / Tabel... forsyningomraade_forslag / Type... MPOL 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 14:10:58,21
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS pdk" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "pdk.forsyningomraade_forslag" -a_srs EPSG:25832 -where "(OGR_GEOMETRY='POLYGON' OR OGR_GEOMETRY='MULTIPOLYGON') AND (cvr_kode='29189129')"  -nlt PROMOTE_TO_MULTI -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "WFS:http://geoservice.plansystem.dk/wfs?version=1.0.0"  "pdk:theme_pdk_forsyningomraade_forslag_v" 
+ERROR 1: Couldn't fetch requested layer 'pdk:theme_pdk_forsyningomraade_forslag_v'!
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON pdk.forsyningomraade_forslag USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+ERROR 1: ERROR:  relation "pdk.forsyningomraade_forslag" does not exist
+
+Kommando.. ogrinfo -q -sql "ALTER TABLE pdk.forsyningomraade_forslag ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+ERROR 1: ERROR:  relation "pdk.forsyningomraade_forslag" does not exist
+
+Kommando.. ogrinfo -q -sql "UPDATE pdk.forsyningomraade_forslag  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+ERROR 1: ERROR:  relation "pdk.forsyningomraade_forslag" does not exist
+LINE 1: UPDATE pdk.forsyningomraade_forslag  SET hent_dato=current_d...
+               ^
+
+
+=== Inddataparametre =======================================================================
+Kilde..... "WFS:http://geoservice.plansystem.dk/wfs?version=1.0.0" / Lag... "pdk:theme_pdk_forsyningsforbudomraade_forslag_v"
+Database.. "host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Schema.... pdk / Tabel... forsyningsforbudomraade_forslag / Type... MPOL 
+
+--- Log data -------------------------------------------------------------------------------
+Job startet 14-06-2016 14:11:13,43
+Kommando.. ogrinfo -q -sql "CREATE SCHEMA IF NOT EXISTS pdk" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+Kommando.. ogr2ogr -skipfailures --config PG_USE_COPY YES -gt 100000 -overwrite  -lco SPATIAL_INDEX=FALSE -lco FID="ogr_fid" -lco GEOMETRY_NAME="sp_geometry" -lco OVERWRITE=YES -nln "pdk.forsyningsforbudomraade_forslag" -a_srs EPSG:25832 -where "(OGR_GEOMETRY='POLYGON' OR OGR_GEOMETRY='MULTIPOLYGON') AND (cvr_kode='29189129')"  -nlt PROMOTE_TO_MULTI -f "PostgreSQL" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'"  "WFS:http://geoservice.plansystem.dk/wfs?version=1.0.0"  "pdk:theme_pdk_forsyningsforbudomraade_forslag_v" 
+ERROR 1: Couldn't fetch requested layer 'pdk:theme_pdk_forsyningsforbudomraade_forslag_v'!
+Kommando.. ogrinfo -q -sql "CREATE INDEX ON pdk.forsyningsforbudomraade_forslag USING GIST (sp_geometry);" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+ERROR 1: ERROR:  relation "pdk.forsyningsforbudomraade_forslag" does not exist
+
+Kommando.. ogrinfo -q -sql "ALTER TABLE pdk.forsyningsforbudomraade_forslag ADD hent_dato varchar(10) NULL DEFAULT current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+ERROR 1: ERROR:  relation "pdk.forsyningsforbudomraade_forslag" does not exist
+
+Kommando.. ogrinfo -q -sql "UPDATE pdk.forsyningsforbudomraade_forslag  SET hent_dato=current_date::character varying" PG:"host='f-gis03' port='5432' dbname='gis' user='postgres' password='ukulemy'" 
+ERROR 1: ERROR:  relation "pdk.forsyningsforbudomraade_forslag" does not exist
+LINE 1: UPDATE pdk.forsyningsforbudomraade_forslag  SET hent_dato=cu...
+               ^
+
+
+============================================================================================
+Sluttid: 14-06-2016 14:11:27,50
+============================================================================================
+Tryk på en vilkårlig tast for at fortsætte . . .

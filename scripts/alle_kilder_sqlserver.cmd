@@ -9,7 +9,8 @@ REM ============================================================================
 REM Upload af SUT data fra Kortforsyningen (WFS) .. Erstat **login** og **password** med korrekte værdier
 REM ============================================================================================
 REM Bounding box skal indlejres i connection streng; ogr_bbox-værdi "tal1 tal2 tal3 tal4" ændres til "tal1,tal2,tal3,tal4" on-the-fly
-set "ogr_inp=http://kortforsyningen.kms.dk/service?servicename=SutWFS_UTM&client=MapInfo&request=GetCapabilities&service=WFS&login=**login**&password=**password**&bbox=%ogr_bbox: =,%"
+::????set "ogr_inp=http://kortforsyningen.kms.dk/service?servicename=SutWFS_UTM&client=MapInfo&request=GetCapabilities&service=WFS&login=**login**&password=**password**&bbox=%ogr_bbox: =,%"
+set "ogr_inp=http://kortforsyningen.kms.dk/service?servicename=SutWFS_UTM&client=MapInfo&request=GetCapabilities&service=WFS&login=Kommune250&password=Dfghjkl10&bbox=%ogr_bbox: =,%"
 set "ogr_conn=server=f-sql12;database=gis_test;trusted_connection=yes"
 
 REM SUT skal have BBOX som indlejret værdi i connection streng, derfor nulstilles ogr_bbox midlertidigt
@@ -58,7 +59,6 @@ call "%ogr_command%" "%ogr_inp%" "jupiter_boringer_ws"           "%ogr_conn%" ge
 call "%ogr_command%" "%ogr_inp%" "jupiter_bor_vandfors_almen_ws" "%ogr_conn%" geus jupiter_bor_vandfors_almen_ws *
 call "%ogr_command%" "%ogr_inp%" "jupiter_bor_vandfors_andre_ws" "%ogr_conn%" geus jupiter_bor_vandfors_andre_ws *
 call "%ogr_command%" "%ogr_inp%" "jupiter_anlaeg_ws"             "%ogr_conn%" geus jupiter_anlaeg_ws             *
-
 
 REM ============================================================================================
 REM Upload af DAI data fra Miljøportalen (WFS)
@@ -177,6 +177,7 @@ REM Reset bbox parameter og nulstil where..
 set "ogr_where="
 set "ogr_bbox=%xbox%" & set "xbox="
 
+goto slut
 
 REM ============================================================================================
 REM Upload af data fra os2geo - Rapport fra stedet (GeoJson http) Estat dummy@dummy.dk og **password** med rigtige værdier 
@@ -292,7 +293,9 @@ call "%ogr_command%" "%ogr_inp%omraader2.shp" * "%ogr_conn%" prognose prognoseom
 REM Reset load
 set "ogr_load=%x_load%" & set "x_load="
 
+:slut
 echo.
 echo ============================================================================================
 echo Sluttid: %date% %time%
 echo ============================================================================================
+pause

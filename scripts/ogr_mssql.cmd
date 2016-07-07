@@ -46,6 +46,14 @@ if not #%ogr_dato%==# (
 )
 
 REM =====================================================
+REM Hvis ogr_buffer er sat, tilføjes bufferzone med valgt bufferværdi
+REM =====================================================
+if not #%ogr_buffer%==# (
+  @echo Kommando.. ogrinfo -q -sql "EXEC dbo.BufferTable @targetschema='%xp4%', @targettable='%xp5%', @buffervalue=%ogr_buffer%" MSSQL:%xp3%
+  ogrinfo -q -sql "EXEC dbo.BufferTable @targetschema='%xp4%', @targettable='%xp5%', @buffervalue=%ogr_buffer%" MSSQL:%xp3%
+)
+
+REM =====================================================
 REM OVERWRITE, TRUNCATE færdigbehandling 
 REM =====================================================
 if not %xp5%==%xp12% (
