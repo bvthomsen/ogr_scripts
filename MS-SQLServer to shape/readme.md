@@ -1,11 +1,9 @@
-Brug af kommando procedure
+Før brug: 
+"D:\release-1928-x64-gdal-3-2-mapserver-7-6" ændres til aktuel placering af GDAL mappe
 
-
-... Kommandoer ovenfor skal ikke ændres, undtaget definition af GDAL mappe placering
+Opsætning af kommandoer: 
 
 call :ogr localhost\sqlexpress geodata ogrusr ogrusr fot d:\tmp "bassin bygning bykerne"
-
-
 
 Linjen består af noget fast tekst plus 7 parametre; parametrene adskilles af blanktegn:
 
