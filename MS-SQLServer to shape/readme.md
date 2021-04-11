@@ -20,6 +20,6 @@ Den ovenstående kommandolinje vil eksportere tabellerne "bassin", "bygning" og 
 
 Der er ikke noget performance at hente; slutresultatet er blot en mere overskuelig kommando procedure.
 
-Hvis du har tabeller fra andre servere, databaser, schemaer eller skal de placeres i andre mapper, kan man gentage kommandolinjen med de ændrede parametre.
+Hvis der er tabeller fra andre servere, databaser, schemaer eller skal de placeres i andre mapper, kan man gentage kommandolinjen med ændrede parametre.
 
 
