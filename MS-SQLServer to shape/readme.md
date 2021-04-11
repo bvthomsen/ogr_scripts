@@ -1,3 +1,5 @@
+Eksport af af tabeller fra MS-SQLServer til shape filer
+
 Før brug: 
 "D:\release-1928-x64-gdal-3-2-mapserver-7-6" ændres til aktuel placering af GDAL mappe
 
