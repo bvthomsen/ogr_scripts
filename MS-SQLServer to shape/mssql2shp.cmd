@@ -11,12 +11,14 @@ call :mssql_is2shp localhost\sqlexpress geodata fot d:\tmp "bassin bygning byker
 
 exit
 
+rem MS SQLServer to shape using username / password subroutine
 :mssql_up2shp
 set dir=%6
 set files=%7
 for %%g in (%files:"=%) do ogr2ogr -f "ESRI Shapefile" "%dir:"=%\%%g.shp" "MSSQL:server=%1;database=%2;uid=%3;pwd=%4;" -sql "SELECT *, CONVERT(varchar, getdate(), 23) AS ogr_date FROM [%5].[%%g]" -overwrite -a_srs "EPSG:25832"
 goto :EOF
 
+rem MS SQLServer to shape using integrated security subroutine
 :mssql_is2shp
 set dir=%4
 set files=%5
