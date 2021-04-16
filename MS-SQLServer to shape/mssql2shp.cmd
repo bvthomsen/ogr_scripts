@@ -1,5 +1,7 @@
 @call D:\release-1928-x64-gdal-3-2-mapserver-7-6\SDKShell.bat setenv hideoci >nul
-echo on
+
+rem MS SQLServer sql staetment without table definition
+set "sql_pre=SELECT *, CONVERT(varchar, getdate(), 23) AS ogr_date FROM"
 
 rem MS SQLServer to shape using username / password ...
 rem call :mssql_up2shp #server #database #db-user #db-password #db-schema #shape-directory #db-tablenames
@@ -21,7 +23,7 @@ set pwd=%5
 set dir=%6\
 set dir=%dir:\\=%
 set files=%7
-for %%g in (%files:"=%) do ogr2ogr -f "ESRI Shapefile" "%dir:"=%\%%g.shp" "MSSQL:server="%srv:"=%;database="%db:"=%;uid="%uid:"=%;pwd="%pwd:"=%;" -sql "SELECT *, CONVERT(varchar, getdate(), 23) AS ogr_date FROM ["%schema:"=%].[%%g]" -overwrite -a_srs "EPSG:25832"
+for %%g in (%files:"=%) do ogr2ogr -f "ESRI Shapefile" "%dir:"=%\%%g.shp" "MSSQL:server="%srv:"=%;database="%db:"=%;uid="%uid:"=%;pwd="%pwd:"=%;" -sql "%sql_pre% ["%schema:"=%].[%%g]" -overwrite -a_srs "EPSG:25832"
 goto :EOF
 
 rem Subroutine: MS SQLServer to shape using integrated security
@@ -32,5 +34,5 @@ set schema=%3
 set dir=%6\
 set dir=%dir:\\=%
 set files=%5
-for %%g in (%files:"=%) do ogr2ogr -f "ESRI Shapefile" "%dir:"=%\%%g.shp" "MSSQL:server="%srv:"=%;database="%db:"=%;trusted_connection=yes;" -sql "SELECT *, CONVERT(varchar, getdate(), 23) AS ogr_date FROM ["%schema:"=%].[%%g]" -overwrite -a_srs "EPSG:25832"
+for %%g in (%files:"=%) do ogr2ogr -f "ESRI Shapefile" "%dir:"=%\%%g.shp" "MSSQL:server="%srv:"=%;database="%db:"=%;trusted_connection=yes;" -sql "%sql_pre% ["%schema:"=%].[%%g]" -overwrite -a_srs "EPSG:25832"
 goto :EOF
