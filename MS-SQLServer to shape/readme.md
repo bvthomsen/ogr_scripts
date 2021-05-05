@@ -1,9 +1,11 @@
-Eksport af af tabeller fra MS-SQLServer til shape filer
+Eksport af af tabeller fra MS-SQLServer til shape filer. Eksemplerne viser både brugen af username/password og brugen af integrated security
 
 Før brug: 
 "D:\release-1928-x64-gdal-3-2-mapserver-7-6" ændres til aktuel placering af GDAL mappe
 
-Opsætning af kommandoer: 
+Eller - hvis man har installeret QGIS: Fjern linje 1, start "OSgeo4W shell" fra QGIS startgruppen og udfør mssql2shp.cmd fra kommandolinjen.
+
+Opsætning af kommandoer i mssql2shp.cmd: 
 
 Med SQLServer username og password: 
 
